@@ -930,11 +930,11 @@
                                                     </Rectangle.Fill>
                                                 </Rectangle>
                                                 <Rectangle x:Name="Highlight" IsHitTestVisible="False" Margin="1" Opacity="0" RadiusY="1" RadiusX="1" Stroke="#FF6DBDD1" StrokeThickness="1"/>-->
-                                                <Thumb x:Name="ElementLeftGrip" Background="Transparent" Cursor="SizeWE" Grid.Column="0" HorizontalAlignment="Left" Margin="2,1,0,1" MinWidth="5" Width="6" Template="{DynamicResource LeftOrRightThumb}"/>
+                                                <Thumb x:Name="ElementLeftGrip" Background="Transparent" Cursor="SizeWE" Grid.Column="0" HorizontalAlignment="Left" Margin="0,4" MinWidth="5" Width="6" Template="{DynamicResource LeftThumb}"/>
                                                 <Grid x:Name="ElementCenterBorder"  Background="{x:Null}" IsHitTestVisible="False" Margin="9,3">
                                                     
                                                 </Grid>
-                                                <Thumb x:Name="ElementRightGrip" Background="Transparent" Cursor="SizeWE" Grid.Column="0" HorizontalAlignment="Right" Margin="0,1,2,1" MinWidth="5" Visibility="Visible" Width="6" Template="{DynamicResource LeftOrRightThumb}"/>
+                                                <Thumb x:Name="ElementRightGrip" Background="Transparent" Cursor="SizeWE" Grid.Column="0" HorizontalAlignment="Right" Margin="0,4" MinWidth="5" Visibility="Visible" Width="6" Template="{DynamicResource RightThumb}"/>
                                             </Grid>
                                         </Grid>
                                     </ControlTemplate>
@@ -1414,12 +1414,19 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <SolidColorBrush x:Key="LeftOrRightThumbBrush" Color="Black"/>
-    <ControlTemplate x:Key="LeftOrRightThumb" TargetType="{x:Type Thumb}">
-        <Grid Margin="1,1,0,1">
-            <Rectangle Width="1" Opacity="0.5"  Fill="{StaticResource LeftOrRightThumbBrush}" RadiusX="2" RadiusY="2"/>
+ 
+    <SolidColorBrush x:Key="LeftThumbBrush" Color="#FF03A9F4"/>
+    <ControlTemplate x:Key="LeftThumb" TargetType="{x:Type Thumb}">
+        <Grid>
+            <Rectangle  Opacity="0.5"  Fill="{StaticResource LeftThumbBrush}" RadiusX="7" RadiusY="7"/>
+            
         </Grid>
     </ControlTemplate>
 
-
+    <SolidColorBrush x:Key="RightThumbBrush" Color="#FFFF5722"/>
+    <ControlTemplate x:Key="RightThumb" TargetType="{x:Type Thumb}">
+        <Grid>
+            <Rectangle  Opacity="0.5"  Fill="{StaticResource RightThumbBrush}" RadiusX="7" RadiusY="7"/>
+        </Grid>
+    </ControlTemplate>
 </ResourceDictionary>
