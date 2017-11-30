@@ -7,27 +7,23 @@
         xmlns:vfc="clr-namespace:Visifire.Charts;assembly=WPFVisifire.Charts"
         mc:Ignorable="d"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Master.V1.0.0" Height="600" Background="{StaticResource AppBackBrush}" ResizeMode="CanMinimize" Width="1000" ShowIconOnTitleBar="True"  ShowMaxRestoreButton="False" GlowBrush="{StaticResource AccentColorBrush}" WindowStartupLocation="CenterScreen" Icon="UImages/LightIcon.png">
+        xmlns:MSC="clr-namespace:MasterCode.MControls"
+        Title="Master.V1.0.0" 
+        Height="600" Background="{StaticResource AppBackBrush}" ResizeMode="CanMinimize" Width="1000" ShowIconOnTitleBar="True"  ShowMaxRestoreButton="False" GlowBrush="{StaticResource AccentColorBrush}" WindowStartupLocation="CenterScreen" Icon="UImages/LightIcon.png">
 
-    <Controls:TransitioningContentControl Transition="RightReplace" >
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Controls:Tile x:Name="SettingTile" Title="Setting" Grid.Column="0" Grid.Row="0" Background="#7F989898" Margin="40,20" Width="Auto" Height="Auto" >
-                <Image Source="UImages/Setting.png" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" />
-            </Controls:Tile>
+
+    <Grid x:Name="RootGrid">
+        <Grid x:Name="LeftMenuGrid" Width="280" HorizontalAlignment="Left">
+            <ScrollViewer Style="{DynamicResource MScrollView}">
+                <StackPanel  Orientation="Vertical">
+                    <MSC:ImageTextButton ActiveRectBrush="#FF1296DB" Height="45" DisplayIconSource="UImages/Main.png" Foreground="Black" MouseDownBackBrush="{DynamicResource MenuMouseDown}" MouseEnterBackBrush="{DynamicResource MenuMouseOver}" NormalBackBrush="{StaticResource AppBackBrush}" MButtonText="Main Page"/>
+                    <MSC:ImageTextButton ActiveRectBrush="#FF8A8A8A" Height="45" DisplayIconSource="UImages/Setting.png" Foreground="Black" MouseDownBackBrush="{DynamicResource MenuMouseDown}" MouseEnterBackBrush="{DynamicResource MenuMouseOver}" NormalBackBrush="{StaticResource AppBackBrush}" MButtonText="Setting"/>
+                </StackPanel>
+            </ScrollViewer>
         </Grid>
-    </Controls:TransitioningContentControl>
-
+        
+        <Controls:TransitioningContentControl x:Name="MainDisplayArea" Transition="RightReplace" Margin="300,0,0,0" />
+    </Grid>
+   
 
 </Controls:MetroWindow>

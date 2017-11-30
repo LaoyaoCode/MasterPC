@@ -1,0 +1,22 @@
+﻿<UserControl
+             x:Name="RootUC"
+             x:Class="MasterCode.MControls.ImageTextButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MasterCode.MControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="45" d:DesignWidth="300">
+    <Grid x:Name="RootGrid"  MouseEnter="RootGrid_MouseEnter" MouseLeave="RootGrid_MouseLeave" MouseLeftButtonDown="RootGrid_MouseLeftButtonDown" MouseLeftButtonUp="RootGrid_MouseLeftButtonUp">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="45"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="DisplayIcon" Grid.Column="0" Source="{Binding DisplayIconSource, ElementName=RootUC}" Margin="10,13,15,13"/>
+            <TextBlock x:Name="ButtonText" Grid.Column="1" Text="{Binding MButtonText, ElementName=RootUC}" VerticalAlignment="Center" FontSize="16"/>
+        </Grid>
+        <Rectangle x:Name="ActiveTagRect" HorizontalAlignment="Left" Width="5" Margin="0,5" Fill="{Binding ActiveRectBrush, ElementName=RootUC}" StrokeThickness="0" />
+    </Grid>
+</UserControl>
