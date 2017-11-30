@@ -7,8 +7,27 @@
         xmlns:vfc="clr-namespace:Visifire.Charts;assembly=WPFVisifire.Charts"
         mc:Ignorable="d"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Master" Height="600" Width="1000" ShowIconOnTitleBar="True"  ShowMaxRestoreButton="False" GlowBrush="{DynamicResource AccentColorBrush}" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <TextBlock Text="Hello World" />
-    </Grid>
+        Title="Master.V1.0.0" Height="600" Background="{StaticResource AppBackBrush}" ResizeMode="CanMinimize" Width="1000" ShowIconOnTitleBar="True"  ShowMaxRestoreButton="False" GlowBrush="{StaticResource AccentColorBrush}" WindowStartupLocation="CenterScreen" Icon="UImages/LightIcon.png">
+
+    <Controls:TransitioningContentControl Transition="RightReplace" >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Controls:Tile x:Name="SettingTile" Title="Setting" Grid.Column="0" Grid.Row="0" Background="#7F989898" Margin="40,20" Width="Auto" Height="Auto" >
+                <Image Source="UImages/Setting.png" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" />
+            </Controls:Tile>
+        </Grid>
+    </Controls:TransitioningContentControl>
+
+
 </Controls:MetroWindow>
