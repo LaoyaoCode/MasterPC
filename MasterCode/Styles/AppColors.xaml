@@ -5,4 +5,5 @@
     <SolidColorBrush x:Key="AppBackBrush" Color="White"/>
     <SolidColorBrush x:Key="MenuMouseDown" Color="#7F4F4F4F"/>
     <SolidColorBrush x:Key="MenuMouseOver" Color="#7FA0A0A0"/>
+    <SolidColorBrush x:Key="NormalTextColor" Color="#7F434343"/>
 </ResourceDictionary>

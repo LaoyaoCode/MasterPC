@@ -155,7 +155,29 @@ namespace MasterCode.MControls
             RootGrid.Background = MouseEnterBackBrush;
 
             //之前没有点击，则设置为已经点击
-            if(!IsActive)
+            if (!IsActive)
+            {
+                IsActive = true;
+                //隐藏活跃标志
+                ActiveTagRect.Visibility = Visibility.Visible;
+
+                //如果有代理事件，则执行代理
+                if (ButtonClick != null)
+                {
+                    ButtonClick.Invoke(this, ButtonID);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 虚拟点击，会将按钮的背景直接设置为正常背景
+        /// </summary>
+        public void Active_Virtual_Click()
+        {
+            RootGrid.Background = NormalBackBrush;
+
+            //之前没有点击，则设置为已经点击
+            if (!IsActive)
             {
                 IsActive = true;
                 //隐藏活跃标志

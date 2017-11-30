@@ -9,20 +9,26 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:MSC="clr-namespace:MasterCode.MControls"
         Title="Master.V1.0.0" 
-        Height="600" Background="{StaticResource AppBackBrush}" ResizeMode="CanMinimize" Width="1000" ShowIconOnTitleBar="True"  ShowMaxRestoreButton="False" GlowBrush="{StaticResource AccentColorBrush}" WindowStartupLocation="CenterScreen" Icon="UImages/LightIcon.png">
+        Height="600" Width="1000" Background="{StaticResource AppBackBrush}" ResizeMode="CanMinimize"  ShowIconOnTitleBar="True"  ShowMaxRestoreButton="False" GlowBrush="{StaticResource AccentColorBrush}" WindowStartupLocation="CenterScreen" Icon="UImages/LightIcon.png">
 
 
     <Grid x:Name="RootGrid">
         <Grid x:Name="LeftMenuGrid" Width="280" HorizontalAlignment="Left">
-            <ScrollViewer Style="{DynamicResource MScrollView}">
-                <StackPanel  Orientation="Vertical">
-                    <MSC:ImageTextButton ActiveRectBrush="#FF1296DB" Height="45" DisplayIconSource="UImages/Main.png" Foreground="Black" MouseDownBackBrush="{DynamicResource MenuMouseDown}" MouseEnterBackBrush="{DynamicResource MenuMouseOver}" NormalBackBrush="{StaticResource AppBackBrush}" MButtonText="Main Page"/>
-                    <MSC:ImageTextButton ActiveRectBrush="#FF8A8A8A" Height="45" DisplayIconSource="UImages/Setting.png" Foreground="Black" MouseDownBackBrush="{DynamicResource MenuMouseDown}" MouseEnterBackBrush="{DynamicResource MenuMouseOver}" NormalBackBrush="{StaticResource AppBackBrush}" MButtonText="Setting"/>
-                </StackPanel>
-            </ScrollViewer>
+            <StackPanel  Orientation="Vertical">
+                <MSC:ImageTextButton x:Name="MainPageControlMenuButotn" ActiveRectBrush="#BF1296DB" Height="45" DisplayIconSource="UImages/Main.png" Foreground="Black" MouseDownBackBrush="{StaticResource MenuMouseDown}" MouseEnterBackBrush="{StaticResource MenuMouseOver}" NormalBackBrush="{StaticResource AppBackBrush}" MButtonText="Main  Page"/>
+                <MSC:ImageTextButton x:Name="DatasDisplayMenuButton" ActiveRectBrush="#BFE91E63" Height="45" DisplayIconSource="UImages/DatasDisplayIcon.png" Foreground="Black" MouseDownBackBrush="{StaticResource MenuMouseDown}" MouseEnterBackBrush="{StaticResource MenuMouseOver}" NormalBackBrush="{StaticResource AppBackBrush}" MButtonText="Datas"/>
+                <MSC:ImageTextButton x:Name="ComsControlMenuButton" ActiveRectBrush="#BFFF5722" Height="45" DisplayIconSource="UImages/ComsControlIcon.png" Foreground="Black" MouseDownBackBrush="{StaticResource MenuMouseDown}" MouseEnterBackBrush="{StaticResource MenuMouseOver}" NormalBackBrush="{StaticResource AppBackBrush}" MButtonText="Coms  Control"/>
+                <MSC:ImageTextButton x:Name="ConsoleMenuButton" ActiveRectBrush="#BF9C27B0" Height="45" DisplayIconSource="UImages/ConsoleIcon.png" Foreground="Black" MouseDownBackBrush="{StaticResource MenuMouseDown}" MouseEnterBackBrush="{StaticResource MenuMouseOver}" NormalBackBrush="{StaticResource AppBackBrush}" MButtonText="Console  Windows"/>
+                <MSC:ImageTextButton x:Name="SettingMenuButton" ActiveRectBrush="#BF8A8A8A" Height="45" DisplayIconSource="UImages/Setting.png" Foreground="Black" MouseDownBackBrush="{StaticResource MenuMouseDown}" MouseEnterBackBrush="{StaticResource MenuMouseOver}" NormalBackBrush="{StaticResource AppBackBrush}" MButtonText="Setting"/>
+            </StackPanel>
         </Grid>
         
-        <Controls:TransitioningContentControl x:Name="MainDisplayArea" Transition="RightReplace" Margin="300,0,0,0" />
+        <Controls:TransitioningContentControl x:Name="MainDisplayArea" Transition="LeftReplace" Margin="300,0,0,0" />
+
+        <MSC:MainPage x:Name="MainPageIns" Visibility="Collapsed"></MSC:MainPage>
+        <MSC:ComsControlPage x:Name="ComsControlPageIns" Visibility="Collapsed"></MSC:ComsControlPage>
+        <MSC:SettingPage x:Name="SettingPageIns" Visibility="Collapsed"></MSC:SettingPage>
+        
     </Grid>
    
 

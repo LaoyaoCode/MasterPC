@@ -82,7 +82,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MControls\ComsControlPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MControls\ImageTextButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MControls\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MControls\SettingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -100,8 +112,17 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MControls\ComsControlPage.xaml.cs">
+      <DependentUpon>ComsControlPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MControls\ImageTextButton.xaml.cs">
       <DependentUpon>ImageTextButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MControls\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MControls\SettingPage.xaml.cs">
+      <DependentUpon>SettingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -141,6 +162,27 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="UImages\Setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UImages\ComsControlIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UImages\DatasDisplayIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UImages\ConsoleIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UImages\PortComIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UImages\StopBitsIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UImages\HandshakeIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UImages\ParityIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
