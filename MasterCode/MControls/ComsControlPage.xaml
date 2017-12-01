@@ -7,17 +7,30 @@
              mc:Ignorable="d" 
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:MSC="clr-namespace:MasterCode.MControls"
+             xmlns:IconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              d:DesignHeight="600" d:DesignWidth="700">
     <Grid Background="{StaticResource AppBackBrush}">
         <Grid Height="80" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="180"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Rectangle Fill="{DynamicResource LeftThumbBrush}" Grid.Column="0" Height="1" Margin="20,0,0,0"></Rectangle>
-            <TextBlock Text="Coms  Control" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource NormalTextColor}" FontSize="22"/>
-            <Rectangle Fill="{DynamicResource RightThumbBrush}" Grid.Column="2" Height="1" Margin="0,0,20,0"></Rectangle>
+            <TextBlock Text="Coms  Control" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource NormalTextColor}" FontSize="22" Margin="10,0"/>
+            <Rectangle Fill="{DynamicResource RightThumbBrush}" Grid.Column="3" Height="1" Margin="0,0,20,0"></Rectangle>
+            <ToggleButton Width="40" Height="40" Grid.Column="2" Margin="0" Style="{StaticResource MetroCircleToggleButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <Rectangle Width="20" Height="20" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ToggleButton}}}">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Uniform">
+                            <VisualBrush.Visual>
+                                <IconPacks:PackIconFontAwesome Kind="Cogs"  Opacity="0.6"/>
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </ToggleButton>
         </Grid>
         <Grid Margin="0,80,0,0">
             <ScrollViewer Style="{StaticResource MScrollView}">
