@@ -28,7 +28,8 @@
         <MSC:MainPage x:Name="MainPageIns" Visibility="Collapsed"></MSC:MainPage>
         <MSC:ComsControlPage x:Name="ComsControlPageIns" Visibility="Collapsed"></MSC:ComsControlPage>
         <MSC:SettingPage x:Name="SettingPageIns" Visibility="Collapsed"></MSC:SettingPage>
-        
+        <MSC:ConsolePage x:Name="ConsolePageIns" Visibility="Collapsed"></MSC:ConsolePage>
+        <MSC:DatasDisplayPage x:Name="DatasDisplayPageIns" Visibility="Collapsed"></MSC:DatasDisplayPage>
     </Grid>
    
 

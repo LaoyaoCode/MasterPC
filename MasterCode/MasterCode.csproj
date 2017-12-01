@@ -94,6 +94,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MControls\ConsolePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MControls\DatasDisplayPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MControls\ImageTextButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -122,6 +130,12 @@
   <ItemGroup>
     <Compile Include="MControls\ComsControlPage.xaml.cs">
       <DependentUpon>ComsControlPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MControls\ConsolePage.xaml.cs">
+      <DependentUpon>ConsolePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MControls\DatasDisplayPage.xaml.cs">
+      <DependentUpon>DatasDisplayPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MControls\ImageTextButton.xaml.cs">
       <DependentUpon>ImageTextButton.xaml</DependentUpon>
@@ -191,6 +205,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="UImages\ParityIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UImages\BandRateIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

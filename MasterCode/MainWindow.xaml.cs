@@ -79,7 +79,7 @@ namespace MasterCode
             //数据显示页面按钮被点击
             else if (id == 2)
             {
-
+                DisplayPage(DatasDisplayPageIns);
             }
             //串口控制页面按钮被点击
             else if (id == 3)
@@ -89,7 +89,7 @@ namespace MasterCode
             //控制台页面按钮被点击
             else if (id == 4)
             {
-                
+                DisplayPage(ConsolePageIns);
             }
             //设置页面被点击
             else if(id == 5)

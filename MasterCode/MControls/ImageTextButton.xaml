@@ -7,6 +7,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MasterCode.MControls"
              mc:Ignorable="d" 
+            xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              d:DesignHeight="45" d:DesignWidth="300">
     <Grid x:Name="RootGrid"  MouseEnter="RootGrid_MouseEnter" MouseLeave="RootGrid_MouseLeave" MouseLeftButtonDown="RootGrid_MouseLeftButtonDown" MouseLeftButtonUp="RootGrid_MouseLeftButtonUp">
         <Grid>
@@ -14,7 +15,10 @@
                 <ColumnDefinition Width="45"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Image x:Name="DisplayIcon" Grid.Column="0" Source="{Binding DisplayIconSource, ElementName=RootUC}" Margin="10,13,15,13"/>
+            <Controls:Badged x:Name="NumberMessageBadged" Badge="{x:Null}" Margin="10,13,15,13"  Grid.Column="0" BadgePlacementMode="TopRight" BadgeBackground="#CC1BA1E2" BadgeForeground="White" FontFamily="Microsoft YaHei Light">
+                <Image x:Name="DisplayIcon" Source="{Binding DisplayIconSource, ElementName=RootUC}"/>
+            </Controls:Badged>
+           
             <TextBlock x:Name="ButtonText" Grid.Column="1" Text="{Binding MButtonText, ElementName=RootUC}" VerticalAlignment="Center" FontSize="16"/>
         </Grid>
         <Rectangle x:Name="ActiveTagRect" HorizontalAlignment="Left" Width="5" Margin="0,5" Fill="{Binding ActiveRectBrush, ElementName=RootUC}" StrokeThickness="0" />

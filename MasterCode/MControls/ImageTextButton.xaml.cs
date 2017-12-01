@@ -21,7 +21,6 @@ namespace MasterCode.MControls
     {
         public delegate void ButtonClickEvent(ImageTextButton sender , int id);
 
-
         /// <summary>
         /// 按钮文本
         /// </summary>
@@ -113,6 +112,7 @@ namespace MasterCode.MControls
         private bool IsActive = false;
         private int ButtonID = -1;
         private event ButtonClickEvent ButtonClick;
+        private int MessageCount = 0 ;
 
         public ImageTextButton()
         {
@@ -122,6 +122,7 @@ namespace MasterCode.MControls
             ActiveTagRect.Visibility = Visibility.Collapsed;
             //设置背景
             RootGrid.Background = NormalBackBrush;
+
         }
 
         /// <summary>
@@ -157,6 +158,8 @@ namespace MasterCode.MControls
             //之前没有点击，则设置为已经点击
             if (!IsActive)
             {
+                SetNumberMessage(0);
+
                 IsActive = true;
                 //隐藏活跃标志
                 ActiveTagRect.Visibility = Visibility.Visible;
@@ -179,6 +182,8 @@ namespace MasterCode.MControls
             //之前没有点击，则设置为已经点击
             if (!IsActive)
             {
+                SetNumberMessage(0);
+
                 IsActive = true;
                 //隐藏活跃标志
                 ActiveTagRect.Visibility = Visibility.Visible;
@@ -199,6 +204,34 @@ namespace MasterCode.MControls
             IsActive = false;
             //隐藏活跃标志
             ActiveTagRect.Visibility = Visibility.Collapsed;
+        }
+
+        /// <summary>
+        /// test success , 设置角标数量
+        /// </summary>
+        /// <param name="value"></param>
+        private void SetNumberMessage(int value)
+        {
+            if(value == 0)
+            {
+                //点击进入了页面，则清除消息
+                NumberMessageBadged.Badge = null;
+                //消息个数置为零
+                MessageCount = 0;
+            }
+            else if(value > 0)
+            {
+                //点击进入了页面，则清除消息
+                NumberMessageBadged.Badge = value;
+                //消息个数置为零
+                MessageCount = value;
+            }
+            //参数无效，抛出错误
+            else
+            {
+                throw new Exception("Message Number Value Can Not Be Negative");
+            }
+           
         }
     }
 }
