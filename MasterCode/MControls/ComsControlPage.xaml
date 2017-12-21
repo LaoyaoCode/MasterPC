@@ -9,6 +9,26 @@
              xmlns:MSC="clr-namespace:MasterCode.MControls"
              xmlns:IconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              d:DesignHeight="600" d:DesignWidth="700">
+    <UserControl.Resources>
+        <Style x:Key="MComSelectTButtonStyle" TargetType="{x:Type MSC:ImageTextButton}">
+            <Setter Property="ActiveRectBrush">
+                <Setter.Value>
+                    <SolidColorBrush Color="#BF1296db"></SolidColorBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Height" Value="45"></Setter>
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <SolidColorBrush Color="Gray"></SolidColorBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="MouseDownBackBrush" Value="{StaticResource MenuMouseDown}"></Setter>
+            <Setter Property="MouseEnterBackBrush" Value="{StaticResource MenuMouseOver}"></Setter>
+            <Setter Property="NormalBackBrush" Value="{StaticResource AppBackBrush}"></Setter>
+            <Setter Property="DisplayIconSource" Value="/MasterCode;component/UImages/SquareWave .png"></Setter>
+        </Style>
+    </UserControl.Resources>
+
     <Grid Background="{StaticResource AppBackBrush}">
         <Grid Height="80" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
@@ -35,37 +55,52 @@
         <Grid Margin="0,80,0,0">
             <ScrollViewer Style="{StaticResource MScrollView}">
                 <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Vertical">
-                        <Grid>
-                            <Image Source="/MasterCode;component/UImages/PortComIcon.png" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="20" Opacity="0.8"/>
-                            <TextBlock x:Name="ComSelectTB" Text="Com" Foreground="{StaticResource NormalTextColor}" FontSize="{StaticResource NormalTextSize}" Margin="50,0,0,0"/>
-                        </Grid>
-                        <Rectangle Fill="{DynamicResource LineBrush}" Height="0.5" Margin="20,20,20,20"></Rectangle>
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical">
-                        <Grid>
-                            <Image Source="/MasterCode;component/UImages/StopBitsIcon.png" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="20" Opacity="0.8"/>
-                            <TextBlock x:Name="StopBitsTB" Text="Stop  Bits" Foreground="{StaticResource NormalTextColor}" FontSize="{StaticResource NormalTextSize}" Margin="50,0,0,0"/>
-                        </Grid>
-                        
-                        <Grid Margin="20,20,10,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <RadioButton GroupName="StopBitsRBG" Grid.Column="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei">One(1)</RadioButton>
-                            <RadioButton GroupName="StopBitsRBG" Grid.Column="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei">One Point Five(1.5)</RadioButton>
-                            <RadioButton GroupName="StopBitsRBG" Grid.Column="2" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei">Two(2)</RadioButton>
-                        </Grid>
-                        <Rectangle Fill="{DynamicResource LineBrush}" Height="0.5" Margin="20,20,20,20"></Rectangle>
-                    </StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel  Orientation="Vertical" Grid.Column="0" Margin="0,0,0,20">
+                            <Grid>
+                                <Image Source="/MasterCode;component/UImages/PortComIcon.png" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="20" Opacity="0.8"/>
+                                <TextBlock x:Name="ComSelectTB" Text="Com" Foreground="{StaticResource NormalTextColor}" FontSize="{StaticResource NormalTextSize}" Margin="50,0,0,0"/>
+                            </Grid>
+                            <ScrollViewer Style="{StaticResource MScrollView}" Height="150" Margin="20,10,10,10">
+                                <StackPanel x:Name="ComsSelectSP" Orientation="Vertical">
+                                    
+                                </StackPanel>
+                            </ScrollViewer>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" Grid.Column="1" Margin="0,0,0,20">
+                            <Grid>
+                                <Image Source="/MasterCode;component/UImages/StopBitsIcon.png" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="20" Opacity="0.8"/>
+                                <TextBlock x:Name="StopBitsTB" Text="Stop  Bits" Foreground="{StaticResource NormalTextColor}" FontSize="{StaticResource NormalTextSize}" Margin="50,0,0,0"/>
+                            </Grid>
+
+                            <Grid Margin="20,20,10,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <RadioButton GroupName="StopBitsRBG" Grid.Column="0" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10">One(1)</RadioButton>
+                                <RadioButton GroupName="StopBitsRBG" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,10,0,0">One Point Five(1.5)</RadioButton>
+                                <RadioButton GroupName="StopBitsRBG" Grid.Column="1" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10">Two(2)</RadioButton>
+                            </Grid>
+                        </StackPanel>
+                        <Rectangle Fill="{DynamicResource LineBrush}" Height="1" Margin="20,20,20,20" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"></Rectangle>
+                    </Grid>
+
                     <StackPanel Orientation="Vertical">
                         <Grid>
                             <Image Source="/MasterCode;component/UImages/ParityIcon.png" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="20" Opacity="0.8"/>
                             <TextBlock x:Name="ParityTB" Text="Parity" Foreground="{StaticResource NormalTextColor}" FontSize="{StaticResource NormalTextSize}" Margin="50,0,0,0"/>
                         </Grid>
-                        
+
                         <Grid Margin="20,20,10,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -89,7 +124,7 @@
                             <Image Source="/MasterCode;component/UImages/HandshakeIcon.png" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="20" Opacity="0.8"/>
                             <TextBlock x:Name="HandShakeTB" Text="HandShake" Foreground="{StaticResource NormalTextColor}" FontSize="{StaticResource NormalTextSize}" Margin="50,0,0,0"/>
                         </Grid>
-                        
+
                         <Grid Margin="20,20,10,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
