@@ -18,6 +18,7 @@ using System.Threading;
 using System.Windows.Threading;
 using MahApps.Metro.Controls;
 using MasterCode.MControls;
+using MasterCode.Code.SQL;
 
 namespace MasterCode
 {
@@ -39,17 +40,22 @@ namespace MasterCode
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            //创建并且初始化Record DB控制器
+            new RecordDBControler();
+
+
+            new RecordModel(1, " 666" , "2017/12/24$20:43:01");
             //初始化按钮点击事件并且赋予按钮ID
             //MainPageButton ID = 1
-            MainPageControlMenuButotn.SetIDAndClick(this.MenuButtonClicked, 1);
+            MainPageControlMenuButotn.SetIDAndClick(this.MenuButtonClicked, "1");
             //DatasDisplayMenuButton ID = 2
-            DatasDisplayMenuButton.SetIDAndClick(this.MenuButtonClicked, 2);
+            DatasDisplayMenuButton.SetIDAndClick(this.MenuButtonClicked, "2");
             //ComsControlMenuButton = 3
-            ComsControlMenuButton.SetIDAndClick(this.MenuButtonClicked, 3);
+            ComsControlMenuButton.SetIDAndClick(this.MenuButtonClicked, "3");
             //ConsoleMenuButton = 4
-            ConsoleMenuButton.SetIDAndClick(this.MenuButtonClicked, 4);
-            //SettingMenuButton = 5
-            SettingMenuButton.SetIDAndClick(this.MenuButtonClicked, 5);
+            ConsoleMenuButton.SetIDAndClick(this.MenuButtonClicked, "4");
+            //AboutAndHelpMenuButton = 5
+            AboutAndHelpMenuButton.SetIDAndClick(this.MenuButtonClicked, "5");
 
             //模拟被点击的情况  ，初始显示主页面
             MainPageControlMenuButotn.Active_Virtual_Click();
@@ -100,33 +106,33 @@ namespace MasterCode
             NowDisplayPage = display ;
         }
 
-        private void MenuButtonClicked(MControls.ImageTextButton button , int id)
+        private void MenuButtonClicked(MControls.ImageTextButton button , String id)
         {
             //主页面按钮被点击
-            if(id == 1)
+            if(id == "1")
             {
                 DisplayPage(MainPageIns);
 
             }
             //数据显示页面按钮被点击
-            else if (id == 2)
+            else if (id == "2")
             {
                 DisplayPage(DatasDisplayPageIns);
             }
             //串口控制页面按钮被点击
-            else if (id == 3)
+            else if (id == "3")
             {
                 DisplayPage(ComsControlPageIns);
             }
             //控制台页面按钮被点击
-            else if (id == 4)
+            else if (id == "4")
             {
                 DisplayPage(ConsolePageIns);
             }
-            //设置页面被点击
-            else if(id == 5)
+            //关于和帮助界面页面被点击
+            else if(id == "5")
             {
-                DisplayPage(SettingPageIns);
+                DisplayPage(AboutAndHelpPageIns);
             }
 
 

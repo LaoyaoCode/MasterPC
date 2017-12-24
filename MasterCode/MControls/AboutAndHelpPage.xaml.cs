@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace MasterCode.MControls
 {
     /// <summary>
-    /// SettingPage.xaml 的交互逻辑
+    /// AboutAndHelpPage.xaml 的交互逻辑
     /// </summary>
-    public partial class SettingPage : UserControl
+    public partial class AboutAndHelpPage : UserControl
     {
-        public SettingPage()
+        public AboutAndHelpPage()
         {
             InitializeComponent();
         }

@@ -19,7 +19,7 @@ namespace MasterCode.MControls
     /// </summary>
     public partial class ImageTextButton : UserControl
     {
-        public delegate void ButtonClickEvent(ImageTextButton sender , int id);
+        public delegate void ButtonClickEvent(ImageTextButton sender , String id);
 
         /// <summary>
         /// 按钮文本
@@ -110,7 +110,7 @@ namespace MasterCode.MControls
 
 
         private bool IsActive = false;
-        private int ButtonID = -1;
+        private String ButtonID = "NULL";
         private event ButtonClickEvent ButtonClick;
         private int MessageCount = 0 ;
 
@@ -130,7 +130,7 @@ namespace MasterCode.MControls
         /// </summary>
         /// <param name="click">点击事件</param>
         /// <param name="id">ID</param>
-        public void SetIDAndClick(ButtonClickEvent click , int id)
+        public void SetIDAndClick(ButtonClickEvent click , String id)
         {
             ButtonClick += click;
             ButtonID = id;

@@ -61,8 +61,8 @@
             <TextBlock Text="Master.V1.0.0" Foreground="{DynamicResource RightThumbBrush}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="45,0,0,0" FontSize="16"/>
             -->
             <Image Source="UImages/LightIcon.png" HorizontalAlignment="Left" Margin="10,5,0,5"/>
-            <MSC:IconButton x:Name="CloseWindowsButton" IconClick="CloseButton_Click" ButtonIcon="Close" NormalBackColor="{DynamicResource AppBackBrush}" HorizontalAlignment="Right" Width="30" Foreground="{x:Null}" IconColor="Red" />
-            <MSC:IconButton x:Name="MinWindowsButton" IconClick="MinButton_Click" ButtonIcon="Minus" NormalBackColor="{DynamicResource AppBackBrush}" HorizontalAlignment="Right" Width="30" Foreground="{x:Null}" IconColor="Black" Margin="0,0,50,0" />
+            <MSC:IconButton x:Name="CloseWindowsButton" IconClick="CloseButton_Click" ButtonIcon="Close" NormalBackColor="{DynamicResource AppBackBrush}" HorizontalAlignment="Right" Width="30" Foreground="{x:Null}" IconColor="Red" ToolTip="关闭程序"/>
+            <MSC:IconButton x:Name="MinWindowsButton" IconClick="MinButton_Click" ButtonIcon="Minus" NormalBackColor="{DynamicResource AppBackBrush}" HorizontalAlignment="Right" Width="30" Foreground="{x:Null}" IconColor="Black" Margin="0,0,50,0" ToolTip="最小化"/>
         </Grid>
 
         <Grid x:Name="LeftMenuGrid" Width="280" HorizontalAlignment="Left" Margin="0,30,0,0">
@@ -71,7 +71,7 @@
                 <MSC:ImageTextButton x:Name="DatasDisplayMenuButton" ActiveRectBrush="#BFE91E63" Height="45" DisplayIconSource="UImages/DatasDisplayIcon.png" Foreground="Black" MouseDownBackBrush="{StaticResource MenuMouseDown}" MouseEnterBackBrush="{StaticResource MenuMouseOver}" NormalBackBrush="{StaticResource AppBackBrush}" MButtonText="Datas"/>
                 <MSC:ImageTextButton x:Name="ComsControlMenuButton" ActiveRectBrush="#BFFF5722" Height="45" DisplayIconSource="UImages/ComsControlIcon.png" Foreground="Black" MouseDownBackBrush="{StaticResource MenuMouseDown}" MouseEnterBackBrush="{StaticResource MenuMouseOver}" NormalBackBrush="{StaticResource AppBackBrush}" MButtonText="Coms  Control"/>
                 <MSC:ImageTextButton x:Name="ConsoleMenuButton" ActiveRectBrush="#BF9C27B0" Height="45" DisplayIconSource="UImages/ConsoleIcon.png" Foreground="Black" MouseDownBackBrush="{StaticResource MenuMouseDown}" MouseEnterBackBrush="{StaticResource MenuMouseOver}" NormalBackBrush="{StaticResource AppBackBrush}" MButtonText="Console  Windows"/>
-                <MSC:ImageTextButton x:Name="SettingMenuButton" ActiveRectBrush="#BF8A8A8A" Height="45" DisplayIconSource="UImages/Setting.png" Foreground="Black" MouseDownBackBrush="{StaticResource MenuMouseDown}" MouseEnterBackBrush="{StaticResource MenuMouseOver}" NormalBackBrush="{StaticResource AppBackBrush}" MButtonText="Setting"/>
+                <MSC:ImageTextButton x:Name="AboutAndHelpMenuButton" ActiveRectBrush="#BF8A8A8A" Height="45" DisplayIconSource="UImages/Help.png" Foreground="Black" MouseDownBackBrush="{StaticResource MenuMouseDown}" MouseEnterBackBrush="{StaticResource MenuMouseOver}" NormalBackBrush="{StaticResource AppBackBrush}" MButtonText="About  And  Help"/>
             </StackPanel>
         </Grid>
 
@@ -79,7 +79,7 @@
 
         <MSC:MainPage x:Name="MainPageIns" Visibility="Collapsed"/>
         <MSC:ComsControlPage x:Name="ComsControlPageIns" Visibility="Collapsed"/>
-        <MSC:SettingPage x:Name="SettingPageIns" Visibility="Collapsed"/>
+        <MSC:AboutAndHelpPage x:Name="AboutAndHelpPageIns" Visibility="Collapsed"/>
         <MSC:ConsolePage x:Name="ConsolePageIns" Visibility="Collapsed"/>
         <MSC:DatasDisplayPage x:Name="DatasDisplayPageIns" Visibility="Collapsed"/>
     </Grid>
