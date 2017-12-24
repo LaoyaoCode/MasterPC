@@ -51,10 +51,6 @@
       <HintPath>..\packages\MahApps.Metro.IconPacks.1.9.1\lib\net40\MahApps.Metro.IconPacks.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MahApps.Metro.IconPacks.FontAwesome, Version=1.9.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MahApps.Metro.IconPacks.FontAwesome.1.9.1\lib\net40\MahApps.Metro.IconPacks.FontAwesome.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -66,7 +62,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -106,6 +101,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MControls\IconButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MControls\ImageTextButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -140,6 +139,9 @@
     </Compile>
     <Compile Include="MControls\DatasDisplayPage.xaml.cs">
       <DependentUpon>DatasDisplayPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MControls\IconButton.xaml.cs">
+      <DependentUpon>IconButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="MControls\ImageTextButton.xaml.cs">
       <DependentUpon>ImageTextButton.xaml</DependentUpon>

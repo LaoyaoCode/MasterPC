@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -23,7 +24,7 @@ namespace MasterCode
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : MetroWindow 
+    public partial class MainWindow : Window 
     {
         //现在正在显示的页面
         private UserControl NowDisplayPage = null;
@@ -34,6 +35,10 @@ namespace MasterCode
         {
             InitializeComponent();
 
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
             //初始化按钮点击事件并且赋予按钮ID
             //MainPageButton ID = 1
             MainPageControlMenuButotn.SetIDAndClick(this.MenuButtonClicked, 1);
@@ -48,6 +53,33 @@ namespace MasterCode
 
             //模拟被点击的情况  ，初始显示主页面
             MainPageControlMenuButotn.Active_Virtual_Click();
+        }
+
+        //关闭程序按钮
+        private void CloseButton_Click()
+        {
+            Application.Current.Shutdown();
+        }
+
+        //最小化按钮
+        private void MinButton_Click()
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        //最顶级矩形条拖动
+        private void TopBackRect_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //move the windows
+            this.DragMove();
+        }
+
+        private void window_StateChanged(object sender, EventArgs e)
+        {
+            if(this.WindowState == WindowState.Normal)
+            {
+                BeginStoryboard((Storyboard)this.Resources["MaxAnimation"]);
+            }
         }
 
         private void DisplayPage(UserControl display)
@@ -107,5 +139,6 @@ namespace MasterCode
 
             NowActiveButton = button;
         }
+
     }
 }
