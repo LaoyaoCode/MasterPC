@@ -233,5 +233,16 @@ namespace MasterCode.MControls
             }
            
         }
+
+        /// <summary>
+        /// test success , 设置角标信息
+        /// </summary>
+        /// <param name="value">要显示的信息</param>
+        public void SetStringMessage(String value)
+        {
+            //设置字符信息到数字信息气泡里面
+            NumberMessageBadged.Badge = value;
+
+        }
     }
 }

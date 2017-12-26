@@ -11,12 +11,14 @@
         Title="Master.V1.0.0" 
         Height="600" Width="1000" Background="{StaticResource AppBackBrush}" StateChanged="window_StateChanged" WindowStyle="None" ResizeMode="CanMinimize"   WindowStartupLocation="CenterScreen" Icon="UImages/LightIcon.png" Loaded="Window_Loaded" BorderBrush="{DynamicResource LeftThumbBrush}" BorderThickness="1">
     <Window.Resources>
+        <!--加载动画-->
         <Storyboard x:Key="LoadAnimation">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="window">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <!--最大化动画-->
         <Storyboard x:Key="MaxAnimation">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="RootGrid">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
@@ -82,6 +84,8 @@
         <MSC:AboutAndHelpPage x:Name="AboutAndHelpPageIns" Visibility="Collapsed"/>
         <MSC:ConsolePage x:Name="ConsolePageIns" Visibility="Collapsed"/>
         <MSC:DatasDisplayPage x:Name="DatasDisplayPageIns" Visibility="Collapsed"/>
+        
+        
     </Grid>
 
 

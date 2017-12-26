@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="MasterCode.MControls.AConsoleMessage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MasterCode.MControls"
+             mc:Ignorable="d" 
+             xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             d:DesignHeight="100" d:DesignWidth="700">
+    <Grid>
+        <icons:PackIconMaterial x:Name="MessageIcon" Kind="ChevronDoubleRight" Width="16" Height="16" Margin="2,3,0,0"></icons:PackIconMaterial>
+        <TextBlock x:Name="MessageTB" TextWrapping="Wrap" LineHeight="28" Text="It Just A Test,。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。测试测试测试测试测试测试66666666666666777777777777778888888888888888" Margin="30,0,0,0" FontSize="16" FontFamily="Microsoft YaHei"></TextBlock>
+    </Grid>
+</UserControl>

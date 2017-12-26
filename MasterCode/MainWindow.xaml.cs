@@ -43,8 +43,6 @@ namespace MasterCode
             //创建并且初始化Record DB控制器
             new RecordDBControler();
 
-
-            new RecordModel(1, " 666" , "2017/12/24$20:43:01");
             //初始化按钮点击事件并且赋予按钮ID
             //MainPageButton ID = 1
             MainPageControlMenuButotn.SetIDAndClick(this.MenuButtonClicked, "1");

@@ -40,7 +40,7 @@
             <Rectangle Fill="{DynamicResource LeftThumbBrush}" Grid.Column="0" Height="1" Margin="20,0,0,0"></Rectangle>
             <TextBlock Text="Coms  Control" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource NormalTextColor}" FontSize="22" Margin="10,0"/>
             <Rectangle Fill="{DynamicResource RightThumbBrush}" Grid.Column="3" Height="1" Margin="0,0,20,0"></Rectangle>
-            <ToggleButton Width="40" Height="40" Grid.Column="2" Margin="0" Style="{StaticResource MetroCircleToggleButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ToggleButton x:Name="ComOpenOrCloseTB" Width="40" Height="40" Grid.Column="2" Margin="0" Style="{StaticResource MetroCircleToggleButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="ComOpenOrCloseTB_Checked" Unchecked="ComOpenOrCloseTB_Unchecked">
                 <Rectangle Width="20" Height="20" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ToggleButton}}}">
                     <Rectangle.OpacityMask>
                         <VisualBrush Stretch="Uniform">
@@ -52,7 +52,7 @@
                 </Rectangle>
             </ToggleButton>
         </Grid>
-        <Grid Margin="0,80,0,0">
+        <Grid Margin="0,80,0,0" >
             <ScrollViewer Style="{StaticResource MScrollView}">
                 <StackPanel Orientation="Vertical">
                     <Grid>
@@ -72,7 +72,7 @@
                             </ScrollViewer>
                         </StackPanel>
 
-                        <StackPanel Orientation="Vertical" Grid.Column="1" Margin="0,0,0,20">
+                        <StackPanel x:Name="StopBitsSP" Orientation="Vertical" Grid.Column="1" Margin="0,0,0,20">
                             <Grid>
                                 <Image Source="/MasterCode;component/UImages/StopBitsIcon.png" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="20" Opacity="0.8"/>
                                 <TextBlock x:Name="StopBitsTB" Text="Stop  Bits" Foreground="{StaticResource NormalTextColor}" FontSize="{StaticResource NormalTextSize}" Margin="50,0,0,0"/>
@@ -87,15 +87,15 @@
                                     <RowDefinition Height="*"></RowDefinition>
                                     <RowDefinition Height="*"></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <RadioButton GroupName="StopBitsRBG" Grid.Column="0" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10">One(1)</RadioButton>
-                                <RadioButton GroupName="StopBitsRBG" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,10,0,0">One Point Five(1.5)</RadioButton>
-                                <RadioButton GroupName="StopBitsRBG" Grid.Column="1" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10">Two(2)</RadioButton>
+                                <RadioButton x:Name="Stop1RB" GroupName="StopBitsRBG" Grid.Column="0" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="1" Checked="StopRadioButton_Checked">One(1)</RadioButton>
+                                <RadioButton x:Name="Stop1_5RB" GroupName="StopBitsRBG" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,10,0,0" Tag="1.5" Checked="StopRadioButton_Checked">One Point Five(1.5)</RadioButton>
+                                <RadioButton x:Name="Stop2RB" GroupName="StopBitsRBG" Grid.Column="1" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="2" Checked="StopRadioButton_Checked">Two(2)</RadioButton>
                             </Grid>
                         </StackPanel>
                         <Rectangle Fill="{DynamicResource LineBrush}" Height="1" Margin="20,20,20,20" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"></Rectangle>
                     </Grid>
 
-                    <StackPanel Orientation="Vertical">
+                    <StackPanel x:Name="ParitySP" Orientation="Vertical">
                         <Grid>
                             <Image Source="/MasterCode;component/UImages/ParityIcon.png" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="20" Opacity="0.8"/>
                             <TextBlock x:Name="ParityTB" Text="Parity" Foreground="{StaticResource NormalTextColor}" FontSize="{StaticResource NormalTextSize}" Margin="50,0,0,0"/>
@@ -111,15 +111,15 @@
                                 <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <RadioButton GroupName="ParityRBG" Grid.Column="0" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10">None</RadioButton>
-                            <RadioButton GroupName="ParityRBG" Grid.Column="1" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10">Space</RadioButton>
-                            <RadioButton GroupName="ParityRBG" Grid.Column="2" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10">Even</RadioButton>
-                            <RadioButton GroupName="ParityRBG" Grid.Column="0" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,10,0,0">Mark</RadioButton>
-                            <RadioButton GroupName="ParityRBG" Grid.Column="1" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,10,0,0">Odd</RadioButton>
+                            <RadioButton GroupName="ParityRBG" Grid.Column="0" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="None">None</RadioButton>
+                            <RadioButton GroupName="ParityRBG" Grid.Column="1" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="Space">Space</RadioButton>
+                            <RadioButton GroupName="ParityRBG" Grid.Column="2" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="Even">Even</RadioButton>
+                            <RadioButton GroupName="ParityRBG" Grid.Column="0" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,10,0,0" Tag="Mark">Mark</RadioButton>
+                            <RadioButton GroupName="ParityRBG" Grid.Column="1" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,10,0,0" Tag="Odd">Odd</RadioButton>
                         </Grid>
-                        <Rectangle Fill="{DynamicResource LineBrush}" Height="0.5" Margin="20,20,20,20"></Rectangle>
+                        <Rectangle Fill="{DynamicResource LineBrush}" Height="1" Margin="20,20,20,20"></Rectangle>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical">
+                    <StackPanel x:Name="HandshakeSP" Orientation="Vertical">
                         <Grid>
                             <Image Source="/MasterCode;component/UImages/HandshakeIcon.png" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="20" Opacity="0.8"/>
                             <TextBlock x:Name="HandShakeTB" Text="HandShake" Foreground="{StaticResource NormalTextColor}" FontSize="{StaticResource NormalTextSize}" Margin="50,0,0,0"/>
@@ -134,14 +134,14 @@
                                 <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <RadioButton GroupName="HandShakeRBG" Grid.Column="0" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10">None</RadioButton>
-                            <RadioButton GroupName="HandShakeRBG" Grid.Column="1" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10">Request  To  Send</RadioButton>
-                            <RadioButton GroupName="HandShakeRBG" Grid.Column="0" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,10,0,0">XOnXOff</RadioButton>
-                            <RadioButton GroupName="HandShakeRBG" Grid.Column="1" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,10,0,0">Request  To  Send  XOnXOff</RadioButton>
+                            <RadioButton GroupName="HandShakeRBG" Grid.Column="0" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="None">None</RadioButton>
+                            <RadioButton GroupName="HandShakeRBG" Grid.Column="1" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="RTS">Request  To  Send</RadioButton>
+                            <RadioButton GroupName="HandShakeRBG" Grid.Column="0" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,10,0,0" Tag="XOXF">XOnXOff</RadioButton>
+                            <RadioButton GroupName="HandShakeRBG" Grid.Column="1" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,10,0,0" Tag="RTSXOXF">Request  To  Send  XOnXOff</RadioButton>
                         </Grid>
-                        <Rectangle Fill="{DynamicResource LineBrush}" Height="0.5" Margin="20,20,20,20"></Rectangle>
+                        <Rectangle Fill="{DynamicResource LineBrush}" Height="1" Margin="20,20,20,20"></Rectangle>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical">
+                    <StackPanel x:Name="BandRateSP" Orientation="Vertical">
                         <Grid>
                             <Image Source="/MasterCode;component/UImages/BandRateIcon.png" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="20" Opacity="0.8"/>
                             <TextBlock x:Name="BandRateTB" Text="BandRate" Foreground="{StaticResource NormalTextColor}" FontSize="{StaticResource NormalTextSize}" Margin="50,0,0,0"/>
@@ -159,20 +159,20 @@
                                 <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="0" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20">300</RadioButton>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="1" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20">600</RadioButton>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="2" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20">1200</RadioButton>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="3" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20">2400</RadioButton>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="0" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20">4800</RadioButton>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="1" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20">9600</RadioButton>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="2" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20">19200</RadioButton>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="3" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20">38400</RadioButton>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="0" Grid.Row="2" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10">43000</RadioButton>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="1" Grid.Row="2" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10">56000</RadioButton>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="2" Grid.Row="2" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10">57600</RadioButton>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="3" Grid.Row="2" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10">115200</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="0" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="300">300</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="1" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="600">600</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="2" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="1200">1200</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="3" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="2400">2400</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="0" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="4800">4800</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="1" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="9600">9600</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="2" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="19200">19200</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="3" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="38400">38400</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="0" Grid.Row="2" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="43000">43000</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="1" Grid.Row="2" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="56000">56000</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="2" Grid.Row="2" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="57600">57600</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="3" Grid.Row="2" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="115200">115200</RadioButton>
                         </Grid>
-                        <Rectangle Fill="{DynamicResource LineBrush}" Height="0.5" Margin="20,0,20,20"></Rectangle>
+                        <Rectangle Fill="{DynamicResource LineBrush}" Height="1" Margin="20,0,20,20"></Rectangle>
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>

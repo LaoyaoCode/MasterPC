@@ -93,11 +93,16 @@
     <Compile Include="Code\PathStaicCollection.cs" />
     <Compile Include="Code\SQL\DBControler.cs" />
     <Compile Include="Code\SQL\RecordModel.cs" />
+    <Compile Include="Code\Tools\StringDispose.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MControls\AboutAndHelpPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MControls\AConsoleMessage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -145,6 +150,9 @@
   <ItemGroup>
     <Compile Include="MControls\AboutAndHelpPage.xaml.cs">
       <DependentUpon>AboutAndHelpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MControls\AConsoleMessage.xaml.cs">
+      <DependentUpon>AConsoleMessage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MControls\ComsControlPage.xaml.cs">
       <DependentUpon>ComsControlPage.xaml</DependentUpon>
