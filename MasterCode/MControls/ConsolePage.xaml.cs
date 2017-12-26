@@ -19,9 +19,34 @@ namespace MasterCode.MControls
     /// </summary>
     public partial class ConsolePage : UserControl
     {
+        /// <summary>
+        /// 唯一实例
+        /// </summary>
+        public static ConsolePage UnityIns = null;
+
+        /// <summary>
+        /// 控制台增加了一个信息代理事件
+        /// </summary>
+        public delegate void ConsoleAddAMessageDel();
+
+        public event ConsoleAddAMessageDel ConsoleAddAMessage;
+
         public ConsolePage()
         {
             InitializeComponent();
+
+            UnityIns = this;
+        }
+
+        public void AddMessage(AConsoleMessage.MessageKindEnum kind , String message)
+        {
+            AConsoleMessage consoleMessage = new AConsoleMessage(kind, message);
+            ConsoleMessageSP.Children.Add(consoleMessage);
+
+            if(ConsoleAddAMessage != null)
+            {
+                ConsoleAddAMessage.Invoke();
+            }
         }
     }
 }

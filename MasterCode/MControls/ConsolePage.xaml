@@ -7,6 +7,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="700">
     <Grid>
-        <TextBlock Text="Console Page" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72" />    
+        <Grid Height="80" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="130"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Rectangle Fill="{DynamicResource LeftThumbBrush}" Grid.Column="0" Height="1" Margin="20,0,0,0"></Rectangle>
+            <TextBlock Text="Console" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource NormalTextColor}" FontSize="22" Margin="10,0"/>
+            <Rectangle Fill="{DynamicResource RightThumbBrush}" Grid.Column="3" Height="1" Margin="0,0,20,0"></Rectangle>
+        </Grid>
+        <ScrollViewer Style="{StaticResource MScrollView}" Margin="0,80,0,0">
+            <StackPanel x:Name="ConsoleMessageSP" Orientation="Vertical">
+                
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

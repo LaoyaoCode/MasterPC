@@ -235,6 +235,14 @@ namespace MasterCode.MControls
         }
 
         /// <summary>
+        /// 增加气泡数字
+        /// </summary>
+        public void AddNumber()
+        {
+            SetNumberMessage(MessageCount + 1);
+        }
+
+        /// <summary>
         /// test success , 设置角标信息
         /// </summary>
         /// <param name="value">要显示的信息</param>

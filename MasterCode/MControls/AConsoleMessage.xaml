@@ -6,9 +6,9 @@
              xmlns:local="clr-namespace:MasterCode.MControls"
              mc:Ignorable="d" 
              xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             d:DesignHeight="100" d:DesignWidth="700">
+             d:DesignHeight="100" d:DesignWidth="700" Loaded="UserControl_Loaded">
     <Grid>
-        <icons:PackIconMaterial x:Name="MessageIcon" Kind="ChevronDoubleRight" Width="16" Height="16" Margin="2,3,0,0"></icons:PackIconMaterial>
-        <TextBlock x:Name="MessageTB" TextWrapping="Wrap" LineHeight="28" Text="It Just A Test,。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。测试测试测试测试测试测试66666666666666777777777777778888888888888888" Margin="30,0,0,0" FontSize="16" FontFamily="Microsoft YaHei"></TextBlock>
+        <icons:PackIconMaterial x:Name="MessageIcon" Kind="ChevronDoubleRight" Width="16" Height="16" Margin="2,13,0,0"></icons:PackIconMaterial>
+        <TextBlock x:Name="MessageTB" TextWrapping="Wrap" LineHeight="28" Margin="30,10,0,0" FontSize="16" FontFamily="Microsoft YaHei" ></TextBlock>
     </Grid>
 </UserControl>

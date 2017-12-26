@@ -37,6 +37,7 @@ namespace MasterCode.MControls
             ParitySP.IsEnabled = false;
             HandshakeSP.IsEnabled = false;
             BandRateSP.IsEnabled = false;
+            ComOpenOrCloseTB.ToolTip = "关闭串口";
         }
 
         //串口关闭
@@ -47,6 +48,7 @@ namespace MasterCode.MControls
             ParitySP.IsEnabled = true;
             HandshakeSP.IsEnabled = true;
             BandRateSP.IsEnabled = true;
+            ComOpenOrCloseTB.ToolTip = "打开串口";
         }
 
         private void StopRadioButton_Checked(object sender, RoutedEventArgs e)

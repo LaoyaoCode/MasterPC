@@ -35,7 +35,6 @@ namespace MasterCode
         public MainWindow()
         {
             InitializeComponent();
-
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -57,6 +56,19 @@ namespace MasterCode
 
             //模拟被点击的情况  ，初始显示主页面
             MainPageControlMenuButotn.Active_Virtual_Click();
+
+            //增加控制台界面增加信息代理
+            ConsolePageIns.ConsoleAddAMessage += ConsolePageIns_ConsoleAddAMessage;
+        }
+
+        //控制台页面增加了一条信息
+        private void ConsolePageIns_ConsoleAddAMessage()
+        {
+            //没有正在显示控制台界面则增加气泡数目
+            if(NowActiveButton != ConsoleMenuButton)
+            {
+                ConsoleMenuButton.AddNumber();
+            }
         }
 
         //关闭程序按钮
