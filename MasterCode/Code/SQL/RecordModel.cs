@@ -9,6 +9,13 @@ namespace MasterCode.Code.SQL
     public class RecordModel
     {
         public int ID;
+        /// <summary>
+        /// 器件ID 1- 20
+        /// </summary>
+        public int DeviceID;
+        /// <summary>
+        /// 这一次记录数据的文件名
+        /// </summary>
         public String FileName;
         /// <summary>
         /// 时间和日期
@@ -26,19 +33,23 @@ namespace MasterCode.Code.SQL
         /// </summary>
         /// <param name="id">记录ID</param>
         /// <param name="fileName">文件名</param>
-        public RecordModel(int id, String fileName)
+        /// <param name="device">器件ID</param>
+        public RecordModel(int id, String fileName , int device)
         {
             FileName = fileName;
             ID = id;
+            DeviceID = device;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="fileName">文件名</param>
-        public RecordModel(String fileName)
+        /// /// <param name="device">器件ID</param>
+        public RecordModel(String fileName, int device)
         {
             FileName = fileName;
+            DeviceID = device;
         }
 
         /// <summary>
@@ -47,10 +58,12 @@ namespace MasterCode.Code.SQL
         /// <param name="id">记录ID</param>
         /// <param name="fileName">文件名</param>
         /// <param name="timeString">时间字符串</param>
-        public RecordModel(int id, String fileName  ,String timeString )
+        /// /// /// <param name="device">器件ID</param>
+        public RecordModel(int id, String fileName, int device,String timeString )
         {
             FileName = fileName;
             ID = id;
+            DeviceID = device;
 
             TimeString = timeString;
 
@@ -68,10 +81,11 @@ namespace MasterCode.Code.SQL
         /// </summary>
         /// <param name="fileName">文件名</param>
         /// <param name="timeString">时间字符串</param>
-        public RecordModel(String fileName, String timeString)
+        /// <param name="device">器件ID</param>
+        public RecordModel(String fileName, int device, String timeString)
         {
             FileName = fileName;
-
+            DeviceID = device;
             TimeString = timeString;
 
             String[] s = timeString.Split('$');

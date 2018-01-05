@@ -28,7 +28,8 @@ namespace MasterCode.Code.SQL
 			"CREATE TABLE IF NOT EXISTS Record"
 			+ "("
 			+ "ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
-			+ "FileName VARCHAR(50) NOT NULL,"
+            + "DeviceID INTEGER NOT NULL,"
+            + "FileName VARCHAR(50) NOT NULL,"
             + "Time VARCHAR(30) NOT NULL"
 			+ ");" ;
 
@@ -92,11 +93,12 @@ namespace MasterCode.Code.SQL
 
                 builder.Append("INSERT INTO ");
                 builder.Append(TableName);
-                builder.Append("(FileName,Time)");
+                builder.Append("(DeviceID,FileName,Time)");
                 builder.Append(" ");
 
                 builder.Append("VALUES");
                 builder.Append("(");
+                builder.Append( model.DeviceID + ",");
                 builder.Append("\'" + model.FileName + "\',");
                 builder.Append("\'" + model.TimeString + "\'");
                 builder.Append(");");
@@ -149,13 +151,51 @@ namespace MasterCode.Code.SQL
                 {
                     while(reader.Read())
                     {
-                        models.Add(new RecordModel(int.Parse(reader["ID"].ToString()), reader["FileName"].ToString(), reader["Time"].ToString()) );
+                        models.Add(new RecordModel(int.Parse(reader["ID"].ToString()),  reader["FileName"].ToString(), int.Parse(reader["DeviceID"].ToString()), reader["Time"].ToString()) );
                     }
                 }
             }
 
             //是否要顺序排列输出
             if(isInOrder)
+            {
+                models.Sort((x, y) => -x.Time.CompareTo(y.Time));
+            }
+
+            return models;
+        }
+
+        /// <summary>
+        /// 读取所有的记录
+        /// test success
+        /// </summary>
+        /// <param name="isInOrder">是否将其降序排列，时间最晚的排在最前面</param>
+        /// <param name="device">器件ID</param>
+        /// <returns></returns>
+        public List<RecordModel> ReadSpecialDeviceRecord(bool isInOrder , int device)
+        {
+            List<RecordModel> models = new List<RecordModel>();
+
+            //连接数据库
+            using (SQLiteConnection sqlConnect = new SQLiteConnection(ConnectingString))
+            {
+                sqlConnect.Open();
+
+                String commandString = "SELECT * FROM " + TableName + " WHERE DeviceID=" + device;
+                SQLiteCommand command = sqlConnect.CreateCommand();
+                command.CommandText = commandString;
+
+                using (SQLiteDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        models.Add(new RecordModel(int.Parse(reader["ID"].ToString()), reader["FileName"].ToString(), int.Parse(reader["DeviceID"].ToString()), reader["Time"].ToString()));
+                    }
+                }
+            }
+
+            //是否要顺序排列输出
+            if (isInOrder)
             {
                 models.Sort((x, y) => -x.Time.CompareTo(y.Time));
             }
