@@ -4,9 +4,84 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MasterCode.MControls"
+             xmlns:vChart="clr-namespace:Visifire.Charts;assembly=WPFVisifire.Charts"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="700">
+             xmlns:MSC="clr-namespace:MasterCode.MControls"
+             d:DesignHeight="600" d:DesignWidth="700" Loaded="UserControl_Loaded">
+
+    <UserControl.Resources>
+        <Style x:Key="MComSelectTButtonStyle" TargetType="{x:Type MSC:ImageTextButton}">
+            <Setter Property="ActiveRectBrush">
+                <Setter.Value>
+                    <SolidColorBrush Color="#BFd4237a"></SolidColorBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Height" Value="45"></Setter>
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <SolidColorBrush Color="Gray"></SolidColorBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="MouseDownBackBrush" Value="{StaticResource MenuMouseDown}"></Setter>
+            <Setter Property="MouseEnterBackBrush" Value="{StaticResource MenuMouseOver}"></Setter>
+            <Setter Property="NormalBackBrush" Value="{StaticResource AppBackBrush}"></Setter>
+            <Setter Property="DisplayIconSource" Value="/MasterCode;component/UImages/DeviceIcon.png"></Setter>
+        </Style>
+    </UserControl.Resources>
+    
     <Grid>
-        <TextBlock Text="Datas Display Page" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72" />
+        <Grid Height="80" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="160"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Rectangle Fill="{DynamicResource LeftThumbBrush}" Grid.Column="0" Height="1" Margin="20,0,0,0"></Rectangle>
+            <TextBlock Text="Datas Display" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource NormalTextColor}" FontSize="22" Margin="10,0"/>
+            <Rectangle Fill="{DynamicResource RightThumbBrush}" Grid.Column="3" Height="1" Margin="0,0,20,0"></Rectangle>
+        </Grid>
+        <Grid Width="150" HorizontalAlignment="Right" Margin="0,80,0,0">
+            <ScrollViewer Style="{StaticResource MScrollView}">
+                <StackPanel x:Name="DeviceIDSelectSP">
+                    <!--<MSC:ImageTextButton Style="{StaticResource MComSelectTButtonStyle}"></MSC:ImageTextButton>-->
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        <Grid Margin="0,80,150,0">
+            <ScrollViewer Style="{StaticResource MScrollView}">
+                <StackPanel Orientation="Vertical" >
+                    <vChart:Chart x:Name="DTotalChart" Grid.Row="0" Template="{StaticResource LYChart}"  AnimatedUpdate="true" IndicatorEnabled="True" ZoomingEnabled="True"  Theme="Theme2" Background="{x:Null}" BorderBrush="{x:Null}" Height="300">
+                        <vChart:Chart.Titles>
+                            <vChart:Title Text="Total Datas"></vChart:Title>
+                        </vChart:Chart.Titles>
+                        <vChart:Chart.AxesY>
+                            <vChart:Axis Title="Value" IntervalType="Number">
+                            </vChart:Axis>
+                        </vChart:Chart.AxesY>
+
+                        <vChart:Chart.AxesX>
+                            <vChart:Axis IntervalType="Number" Title="Times" Interval="1" LineThickness="0">
+                            </vChart:Axis>
+                        </vChart:Chart.AxesX>
+                    </vChart:Chart>
+                    <Grid>
+                        <vChart:Chart x:Name="OnceDataChart" Grid.Row="0" Template="{StaticResource LYChart}"  AnimatedUpdate="true" IndicatorEnabled="True" ZoomingEnabled="True"  Theme="Theme2" Background="{x:Null}" BorderBrush="{x:Null}" Height="300">
+                            <vChart:Chart.Titles>
+                                <vChart:Title Text="Once Datas"></vChart:Title>
+                            </vChart:Chart.Titles>
+                            <vChart:Chart.AxesY>
+                                <vChart:Axis Title="Value" IntervalType="Number">
+                                </vChart:Axis>
+                            </vChart:Chart.AxesY>
+
+                            <vChart:Chart.AxesX>
+                                <vChart:Axis IntervalType="Number" Title="Times" LineThickness="0">
+                                </vChart:Axis>
+                            </vChart:Chart.AxesX>
+                        </vChart:Chart>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </UserControl>
