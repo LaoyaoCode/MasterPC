@@ -5,8 +5,31 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MasterCode.MControls"
              mc:Ignorable="d" 
+             xmlns:MSC="clr-namespace:MasterCode.MControls"
              d:DesignHeight="600" d:DesignWidth="700">
     <Grid>
-        <TextBlock Text="Main Page" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72" />
+        <Grid Height="80" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="140"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Rectangle Fill="{DynamicResource LeftThumbBrush}" Grid.Column="0" Height="1" Margin="20,0,0,0"></Rectangle>
+            <TextBlock Text="Main" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource NormalTextColor}" FontSize="22" Margin="10,0"/>
+            <Rectangle Fill="{DynamicResource RightThumbBrush}" Grid.Column="3" Height="1" Margin="0,0,20,0"></Rectangle>
+        </Grid>
+        <Grid x:Name="TopExcelPathGrid" Height="40" VerticalAlignment="Top" Margin="0,80,0,0">
+            <Grid VerticalAlignment="Center" Margin="20,0,0,0" >
+                <TextBlock x:Name="ExcelPathTBlock" Text="Excel Files Path : D:\Images" Foreground="{StaticResource NormalTextColor}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" FontSize="16"  Margin="0,0,120,0" ToolTip="Excel文件存储文件夹地址" />
+                <Rectangle Fill="{StaticResource RightThumbBrush}" VerticalAlignment="Bottom" Height="1"  Margin="0,0,120,-5"></Rectangle>
+            </Grid>
+            <MSC:IconButton x:Name="OpenExcelDicButton" ButtonIcon="OpenInNew" IconColor="{DynamicResource RightThumbBrush}" Height="30" HorizontalAlignment="Right" Margin="0,10,70,0" Background="{DynamicResource AppBackBrush}" NormalBackColor="{DynamicResource AppBackBrush}" ToolTip="打开Excel数据文件夹"></MSC:IconButton>
+            <MSC:IconButton x:Name="ChangeExcelDicButton" ButtonIcon="PencilCircle" IconColor="{DynamicResource LeftThumbBrush}" Height="30" HorizontalAlignment="Right" Margin="0,10,20,0" Background="{DynamicResource AppBackBrush}" NormalBackColor="{DynamicResource AppBackBrush}" ToolTip="更改Excel数据文件夹"></MSC:IconButton>
+        </Grid>
+        <Grid Height="40" VerticalAlignment="Top" Margin="20,130,0,0">
+            <TextBlock Foreground="{DynamicResource NormalTextColor}" FontSize="16" HorizontalAlignment="Left" Text="Datas" VerticalAlignment="Center" ToolTip="数据获取进度"></TextBlock>
+            <Rectangle Height="2" Fill="{DynamicResource MenuMouseOver}" Margin="80,0,20,0" VerticalAlignment="Center"></Rectangle>
+            <Rectangle x:Name="DatasGetPercentLine" Height="2" Fill="{DynamicResource LeftThumbBrush}" Margin="80,0,20,0" VerticalAlignment="Center"></Rectangle>
+        </Grid>
     </Grid>
 </UserControl>

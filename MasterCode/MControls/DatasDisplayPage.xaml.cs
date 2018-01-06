@@ -9,6 +9,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MasterCode.MControls;
@@ -23,6 +24,7 @@ namespace MasterCode.MControls
     {
         private ImageTextButton NowSelectDeviceButton = null;
         private int NowSelectDeviceID = 0;
+        private bool IsDeviceSelectGridMax = false;
 
         public DatasDisplayPage()
         {
@@ -42,6 +44,26 @@ namespace MasterCode.MControls
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void SelectDeviceMaxOrMinButtonClick()
+        {
+            if(IsDeviceSelectGridMax)
+            {
+                IsDeviceSelectGridMax = false;
+                SelectMaxOrMinButton.ButtonIcon = MahApps.Metro.IconPacks.PackIconMaterialKind.ArrowLeftBoldCircleOutline;
+                Storyboard animation = (Storyboard)this.Resources["SelectDeviceMinAnimation"];
+                animation.Begin();
+                SelectMaxOrMinButton.ToolTip = "打开器件选择面板";
+            }
+            else
+            {
+                IsDeviceSelectGridMax = true;
+                SelectMaxOrMinButton.ButtonIcon = MahApps.Metro.IconPacks.PackIconMaterialKind.ArrowRightBoldCircleOutline;
+                Storyboard animation = (Storyboard)this.Resources["SelectDeviceMaxAnimation"];
+                animation.Begin();
+                SelectMaxOrMinButton.ToolTip = "关闭器件选择面板";
+            }
         }
 
         /*

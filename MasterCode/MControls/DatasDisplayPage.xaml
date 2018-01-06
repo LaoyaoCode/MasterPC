@@ -19,16 +19,35 @@
             <Setter Property="Height" Value="45"></Setter>
             <Setter Property="Foreground">
                 <Setter.Value>
-                    <SolidColorBrush Color="Gray"></SolidColorBrush>
+                    <SolidColorBrush Color="#FFE3E3E3"></SolidColorBrush>
                 </Setter.Value>
             </Setter>
             <Setter Property="MouseDownBackBrush" Value="{StaticResource MenuMouseDown}"></Setter>
             <Setter Property="MouseEnterBackBrush" Value="{StaticResource MenuMouseOver}"></Setter>
-            <Setter Property="NormalBackBrush" Value="{StaticResource AppBackBrush}"></Setter>
-            <Setter Property="DisplayIconSource" Value="/MasterCode;component/UImages/DeviceIcon.png"></Setter>
+            <Setter Property="NormalBackBrush" Value="#FF7C7C7C"></Setter>
         </Style>
+        <Storyboard x:Key="SelectDeviceMinAnimation">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="SelectDeviceGrid">
+                <EasingThicknessKeyFrame KeyTime="0" Value="0,80,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="0:0:0.4" Value="0,80,-150,0">
+                    <EasingThicknessKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseOut"/>
+                    </EasingThicknessKeyFrame.EasingFunction>
+                </EasingThicknessKeyFrame>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="SelectDeviceMaxAnimation">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="SelectDeviceGrid">
+                <EasingThicknessKeyFrame KeyTime="0" Value="0,80,-150,0"/>
+                <EasingThicknessKeyFrame KeyTime="0:0:1" Value="0,80,0,0">
+                    <EasingThicknessKeyFrame.EasingFunction>
+                        <ElasticEase EasingMode="EaseOut" Springiness="10" Oscillations="1"/>
+                    </EasingThicknessKeyFrame.EasingFunction>
+                </EasingThicknessKeyFrame>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
     </UserControl.Resources>
-    
+
     <Grid>
         <Grid Height="80" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
@@ -39,15 +58,9 @@
             <Rectangle Fill="{DynamicResource LeftThumbBrush}" Grid.Column="0" Height="1" Margin="20,0,0,0"></Rectangle>
             <TextBlock Text="Datas Display" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource NormalTextColor}" FontSize="22" Margin="10,0"/>
             <Rectangle Fill="{DynamicResource RightThumbBrush}" Grid.Column="3" Height="1" Margin="0,0,20,0"></Rectangle>
+            <MSC:IconButton x:Name="SelectMaxOrMinButton" Grid.Column="2" Background="{DynamicResource AppBackBrush}" NormalBackColor="{DynamicResource AppBackBrush}" IconColor="{DynamicResource RightThumbBrush}" ButtonIcon="ArrowLeftDropCircleOutline" Height="35" HorizontalAlignment="Right" VerticalAlignment="Bottom" IconClick="SelectDeviceMaxOrMinButtonClick" ToolTip="打开器件选择面板"/>
         </Grid>
-        <Grid Width="150" HorizontalAlignment="Right" Margin="0,80,0,0">
-            <ScrollViewer Style="{StaticResource MScrollView}">
-                <StackPanel x:Name="DeviceIDSelectSP">
-                    <!--<MSC:ImageTextButton Style="{StaticResource MComSelectTButtonStyle}"></MSC:ImageTextButton>-->
-                </StackPanel>
-            </ScrollViewer>
-        </Grid>
-        <Grid Margin="0,80,150,0">
+        <Grid Margin="0,80,0,0">
             <ScrollViewer Style="{StaticResource MScrollView}">
                 <StackPanel Orientation="Vertical" >
                     <vChart:Chart x:Name="DTotalChart" Grid.Row="0" Template="{StaticResource LYChart}"  AnimatedUpdate="true" IndicatorEnabled="True" ZoomingEnabled="True"  Theme="Theme2" Background="{x:Null}" BorderBrush="{x:Null}" Height="300">
@@ -65,7 +78,12 @@
                         </vChart:Chart.AxesX>
                     </vChart:Chart>
                     <Grid>
-                        <vChart:Chart x:Name="OnceDataChart" Grid.Row="0" Template="{StaticResource LYChart}"  AnimatedUpdate="true" IndicatorEnabled="True" ZoomingEnabled="True"  Theme="Theme2" Background="{x:Null}" BorderBrush="{x:Null}" Height="300">
+                        <ScrollViewer HorizontalAlignment="Right" Width="150" Style="{StaticResource MScrollView}">
+                            <StackPanel x:Name="OnceDataOfDeviceSelectSP">
+                                
+                            </StackPanel>
+                        </ScrollViewer>
+                        <vChart:Chart x:Name="OnceDataChart" Grid.Row="0" Template="{StaticResource LYChart}"  AnimatedUpdate="true" IndicatorEnabled="True" ZoomingEnabled="True"  Theme="Theme2" Background="{x:Null}" BorderBrush="{x:Null}" Height="300" Margin="0,0,150,0">
                             <vChart:Chart.Titles>
                                 <vChart:Title Text="Once Datas"></vChart:Title>
                             </vChart:Chart.Titles>
@@ -80,6 +98,13 @@
                             </vChart:Chart.AxesX>
                         </vChart:Chart>
                     </Grid>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        <Grid x:Name="SelectDeviceGrid" Width="150" HorizontalAlignment="Right" Margin="0,80,-150,0" Background="#FF7C7C7C">
+            <ScrollViewer Style="{StaticResource MScrollView}">
+                <StackPanel x:Name="DeviceIDSelectSP" Background="#FF7C7C7C">
+                    <!--<MSC:ImageTextButton Style="{StaticResource MComSelectTButtonStyle}"></MSC:ImageTextButton>-->
                 </StackPanel>
             </ScrollViewer>
         </Grid>
