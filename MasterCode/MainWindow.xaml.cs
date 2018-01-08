@@ -19,6 +19,8 @@ using System.Windows.Threading;
 using MahApps.Metro.Controls;
 using MasterCode.MControls;
 using MasterCode.Code.SQL;
+using MasterCode.Code;
+using MasterCode.Code.Tools;
 
 namespace MasterCode
 {
@@ -41,6 +43,8 @@ namespace MasterCode
         {
             //创建并且初始化Record DB控制器
             new RecordDBControler();
+            //创建并且初始化用户喜好控制器
+            new UserPerferControler();
 
             //初始化按钮点击事件并且赋予按钮ID
             //MainPageButton ID = 1

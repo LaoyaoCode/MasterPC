@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MasterCode.MControls"
              mc:Ignorable="d" 
              xmlns:MSC="clr-namespace:MasterCode.MControls"
-             d:DesignHeight="600" d:DesignWidth="700">
+             d:DesignHeight="600" d:DesignWidth="700" Loaded="UserControl_Loaded">
     <Grid>
         <Grid Height="80" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
@@ -23,8 +23,8 @@
                 <TextBlock x:Name="ExcelPathTBlock" Text="Excel Files Path : D:\Images" Foreground="{StaticResource NormalTextColor}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" FontSize="16"  Margin="0,0,120,0" ToolTip="Excel文件存储文件夹地址" />
                 <Rectangle Fill="{StaticResource RightThumbBrush}" VerticalAlignment="Bottom" Height="1"  Margin="0,0,120,-5"></Rectangle>
             </Grid>
-            <MSC:IconButton x:Name="OpenExcelDicButton" ButtonIcon="OpenInNew" IconColor="{DynamicResource RightThumbBrush}" Height="30" HorizontalAlignment="Right" Margin="0,10,70,0" Background="{DynamicResource AppBackBrush}" NormalBackColor="{DynamicResource AppBackBrush}" ToolTip="打开Excel数据文件夹"></MSC:IconButton>
-            <MSC:IconButton x:Name="ChangeExcelDicButton" ButtonIcon="PencilCircle" IconColor="{DynamicResource LeftThumbBrush}" Height="30" HorizontalAlignment="Right" Margin="0,10,20,0" Background="{DynamicResource AppBackBrush}" NormalBackColor="{DynamicResource AppBackBrush}" ToolTip="更改Excel数据文件夹"></MSC:IconButton>
+            <MSC:IconButton x:Name="OpenExcelDicButton" ButtonIcon="OpenInNew" IconColor="{DynamicResource RightThumbBrush}" Height="30" HorizontalAlignment="Right" Margin="0,10,70,0" Background="{DynamicResource AppBackBrush}" NormalBackColor="{DynamicResource AppBackBrush}" ToolTip="打开Excel数据文件夹" IconClick="OpenExcelPathButton_Click"></MSC:IconButton>
+            <MSC:IconButton x:Name="ChangeExcelDicButton" ButtonIcon="PencilCircle" IconColor="{DynamicResource LeftThumbBrush}" Height="30" HorizontalAlignment="Right" Margin="0,10,20,0" Background="{DynamicResource AppBackBrush}" NormalBackColor="{DynamicResource AppBackBrush}" ToolTip="更改Excel数据文件夹" IconClick="ChangeExcelPathButton_Click"></MSC:IconButton>
         </Grid>
         <Grid Height="40" VerticalAlignment="Top" Margin="20,130,0,0">
             <TextBlock Foreground="{DynamicResource NormalTextColor}" FontSize="16" HorizontalAlignment="Left" Text="Datas" VerticalAlignment="Center" ToolTip="数据获取进度"></TextBlock>

@@ -19,5 +19,13 @@ namespace MasterCode.Code
         /// 数据记录数据表路径
         /// </summary>
         public static String RecordDBPath = DatasDirPath + "\\Records.s3db";
+        /// <summary>
+        /// 用户文件
+        /// </summary>
+        public static String UserPreferFile = RootOfExePath + "UserPrefer.xml";
+        /// <summary>
+        /// 默认EXCEL文件保存文件夹
+        /// </summary>
+        public static String DefaultExcelDir = RootOfExePath + "ExcelDatas";
     }
 }
