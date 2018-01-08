@@ -26,13 +26,15 @@ namespace MasterCode.MControls
         public MainPage()
         {
             InitializeComponent();
-            CheckExcelDefaultDir();
+            
         }
 
         
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if(UserPerferControler.UnityIns.GetExcelPath() == "NULL")
+            CheckExcelDefaultDir();
+
+            if (UserPerferControler.UnityIns.GetExcelPath() == "NULL")
             {
                 ExcelPathTBlock.Text = "Excel Datas Dir : " + PathStaicCollection.DefaultExcelDir;
             }

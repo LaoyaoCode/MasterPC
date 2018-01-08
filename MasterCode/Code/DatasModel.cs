@@ -7,7 +7,6 @@ using System.Xml.Serialization;
 using MasterCode.Code.Tools;
 using MasterCode.Code;
 using Excel = Microsoft.Office.Interop.Excel;
-using MasterCode.Code.Tools;
 
 namespace MasterCode.Code
 {
@@ -40,7 +39,12 @@ namespace MasterCode.Code
         /// 30次未定义数据
         /// 从下标0-29,0为最开始采集的数据，29为最后采集的数据
         /// </summary>
-        public List<float> Somethings = new List<float>();
+        public List<float> Somethings1 = new List<float>();
+        /// <summary>
+        /// 30次未定义数据
+        /// 从下标0-29,0为最开始采集的数据，29为最后采集的数据
+        /// </summary>
+        public List<float> Somethings2 = new List<float>();
 
         /// <summary>
         /// 增加一次整体数据到模型中
@@ -49,8 +53,10 @@ namespace MasterCode.Code
         /// <param name="light">光照强度</param>
         /// <param name="voltage">电压</param>
         /// <param name="power">功率因素</param>
+        /// <param name="something1">某些东西1</param>
+        /// <param name="something2">某些东西2</param>
         /// <returns>如果已经无法再添加了(达到了30组数据),则返回true，可以继续添加则为false</returns>
-        public bool AddOnceData(float light , float voltage , float power , float something)
+        public bool AddOnceData(float light , float voltage , float power , float something1 , float something2)
         {
             if(LightIntensity.Count >= 30)
             {
@@ -61,7 +67,8 @@ namespace MasterCode.Code
                 LightIntensity.Add(light);
                 Voltage.Add(voltage);
                 PowerFactor.Add(power);
-                Somethings.Add(something);
+                Somethings1.Add(something1);
+                Somethings2.Add(something2);
 
                 if (LightIntensity.Count >= 30)
                 {
@@ -165,9 +172,10 @@ namespace MasterCode.Code
             workSheet.Cells[1, "C"] = "光照强度";
             workSheet.Cells[1, "D"] = "电压";
             workSheet.Cells[1, "E"] = "功率因素";
-            workSheet.Cells[1, "F"] = "Somethings";
+            workSheet.Cells[1, "F"] = "Somethings1";
+            workSheet.Cells[1, "G"] = "Somethings2";
 
-            for(int counterForDevice = 1; counterForDevice <= 20; counterForDevice++)
+            for (int counterForDevice = 1; counterForDevice <= 20; counterForDevice++)
             {
                 for(int counterForData = 0; counterForData < AllDevicesDatas[counterForDevice].Count(); counterForData++)
                 {
@@ -176,7 +184,8 @@ namespace MasterCode.Code
                     workSheet.Cells[counterForRow, "C"] = AllDevicesDatas[counterForDevice].LightIntensity[counterForData].ToString("0.00");
                     workSheet.Cells[counterForRow, "D"] = AllDevicesDatas[counterForDevice].Voltage[counterForData].ToString("0.00");
                     workSheet.Cells[counterForRow, "E"] = AllDevicesDatas[counterForDevice].PowerFactor[counterForData].ToString("0.00");
-                    workSheet.Cells[counterForRow, "F"] = AllDevicesDatas[counterForDevice].Somethings[counterForData].ToString("0.00");
+                    workSheet.Cells[counterForRow, "F"] = AllDevicesDatas[counterForDevice].Somethings1[counterForData].ToString("0.00");
+                    workSheet.Cells[counterForRow, "G"] = AllDevicesDatas[counterForDevice].Somethings2[counterForData].ToString("0.00");
 
                     counterForRow++;
                 }

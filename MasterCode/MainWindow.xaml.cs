@@ -55,18 +55,12 @@ namespace MasterCode
             ComsControlMenuButton.SetIDAndClick(this.MenuButtonClicked, "3");
             //ConsoleMenuButton = 4
             ConsoleMenuButton.SetIDAndClick(this.MenuButtonClicked, "4");
-            //AboutAndHelpMenuButton = 5
-            AboutAndHelpMenuButton.SetIDAndClick(this.MenuButtonClicked, "5");
 
             //模拟被点击的情况  ，初始显示主页面
             MainPageControlMenuButotn.Active_Virtual_Click();
 
             //增加控制台界面增加信息代理
             ConsolePageIns.ConsoleAddAMessage += ConsolePageIns_ConsoleAddAMessage;
-
-
-            //test
-            TestForExcel();
         }
 
         //控制台页面增加了一条信息
@@ -147,12 +141,6 @@ namespace MasterCode
             {
                 DisplayPage(ConsolePageIns);
             }
-            //关于和帮助界面页面被点击
-            else if(id == "5")
-            {
-                DisplayPage(AboutAndHelpPageIns);
-            }
-
 
 
             //将之前活跃的按钮设置为不活跃
@@ -162,24 +150,6 @@ namespace MasterCode
             }
 
             NowActiveButton = button;
-        }
-
-
-        //test--------------------------------------------------------------------------
-        private void TestForExcel()
-        {
-            Random random = new Random();
-            ExcelDatasModel model = new ExcelDatasModel();
-
-            for(int counter = 1;  counter <= 20; counter++)
-            {
-                for(int i = 0; i < 30; i++)
-                {
-                    model.AllDevicesDatas[counter].AddOnceData((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
-                }
-            }
-
-            model.SaveAsXLSX();
         }
     }
 }
