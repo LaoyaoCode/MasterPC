@@ -24,7 +24,7 @@ namespace MasterCode.Code
         /// </summary>
         public static String UserPreferFile = RootOfExePath + "UserPrefer.xml";
         /// <summary>
-        /// 默认EXCEL文件保存文件夹
+        /// 默认EXCEL文件保存文件夹路径，没有分隔符
         /// </summary>
         public static String DefaultExcelDir = RootOfExePath + "ExcelDatas";
     }

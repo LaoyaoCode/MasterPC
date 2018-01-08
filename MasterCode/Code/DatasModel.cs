@@ -7,6 +7,7 @@ using System.Xml.Serialization;
 using MasterCode.Code.Tools;
 using MasterCode.Code;
 using Excel = Microsoft.Office.Interop.Excel;
+using MasterCode.Code.Tools;
 
 namespace MasterCode.Code
 {
@@ -17,19 +18,27 @@ namespace MasterCode.Code
     public class OneDeviceDatasModel
     {
         /// <summary>
+        /// 保存的最大数据个数
+        /// </summary>
+        public const int MaxCount = 30;
+        /// <summary>
         /// 30次光强
+        /// 从下标0-29,0为最开始采集的数据，29为最后采集的数据
         /// </summary>
         public List<float> LightIntensity = new List<float>();
         /// <summary>
         /// 30次电压
+        /// 从下标0-29,0为最开始采集的数据，29为最后采集的数据
         /// </summary>
         public List<float> Voltage = new List<float>();
         /// <summary>
         /// 30次功率因素
+        /// 从下标0-29,0为最开始采集的数据，29为最后采集的数据
         /// </summary>
         public List<float> PowerFactor = new List<float>();
         /// <summary>
         /// 30次未定义数据
+        /// 从下标0-29,0为最开始采集的数据，29为最后采集的数据
         /// </summary>
         public List<float> Somethings = new List<float>();
 
@@ -103,6 +112,11 @@ namespace MasterCode.Code
 
             return result;
         }
+
+        public int Count()
+        {
+            return LightIntensity.Count;
+        }
     }
 
     public class ExcelDatasModel
@@ -113,11 +127,63 @@ namespace MasterCode.Code
         /// </summary>
         public Dictionary<int, OneDeviceDatasModel> AllDevicesDatas = new Dictionary<int, OneDeviceDatasModel>();
 
-
-        public void SaveAsXLS()
+        public ExcelDatasModel()
         {
-            //String 
+            for(int counter = 1; counter <= 20; counter ++)
+            {
+                AllDevicesDatas.Add(counter, new OneDeviceDatasModel());
+            }
         }
 
+        /// <summary>
+        /// 将模型保存为XLSX数据，自动命名，但花费时间较长，故而不能在主线程中执行
+        /// </summary>
+        public void SaveAsXLSX()
+        {
+            String fileName;
+            int counterForRow = 2;
+
+            if (UserPerferControler.UnityIns.GetExcelPath() == "NULL")
+            {
+                fileName = PathStaicCollection.DefaultExcelDir + "\\" + DateTime.Now.ToLongDateString() + "__" + DateTime.Now.ToLongTimeString().Replace(':','.') + ".xlsx";
+            }
+            else
+            {
+                fileName = UserPerferControler.UnityIns.GetExcelPath() + "\\" + DateTime.Now.ToLongDateString() + "__" + DateTime.Now.ToLongTimeString().Replace(':', '.') + ".xlsx";
+            }         
+
+            // Load up Excel, then make a new empty workbook.
+            Excel.Application excelApp = new Excel.Application();
+            excelApp.Workbooks.Add();
+
+            // This example uses a single workSheet.
+            Excel._Worksheet workSheet = excelApp.ActiveSheet;
+
+            // Establish column headings in cells.
+            workSheet.Cells[1, "A"] = "器件ID";
+            workSheet.Cells[1, "B"] = "采集编号(0为最先采集的数据)";
+            workSheet.Cells[1, "C"] = "光照强度";
+            workSheet.Cells[1, "D"] = "电压";
+            workSheet.Cells[1, "E"] = "功率因素";
+            workSheet.Cells[1, "F"] = "Somethings";
+
+            for(int counterForDevice = 1; counterForDevice <= 20; counterForDevice++)
+            {
+                for(int counterForData = 0; counterForData < AllDevicesDatas[counterForDevice].Count(); counterForData++)
+                {
+                    workSheet.Cells[counterForRow, "A"] = counterForDevice.ToString();
+                    workSheet.Cells[counterForRow, "B"] = counterForData.ToString();
+                    workSheet.Cells[counterForRow, "C"] = AllDevicesDatas[counterForDevice].LightIntensity[counterForData].ToString("0.00");
+                    workSheet.Cells[counterForRow, "D"] = AllDevicesDatas[counterForDevice].Voltage[counterForData].ToString("0.00");
+                    workSheet.Cells[counterForRow, "E"] = AllDevicesDatas[counterForDevice].PowerFactor[counterForData].ToString("0.00");
+                    workSheet.Cells[counterForRow, "F"] = AllDevicesDatas[counterForDevice].Somethings[counterForData].ToString("0.00");
+
+                    counterForRow++;
+                }
+            }
+
+            workSheet.SaveAs(fileName);
+            excelApp.Quit();
+        }
     }
 }
