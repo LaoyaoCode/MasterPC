@@ -61,6 +61,10 @@ namespace MasterCode
 
             //增加控制台界面增加信息代理
             ConsolePageIns.ConsoleAddAMessage += ConsolePageIns_ConsoleAddAMessage;
+
+
+            //test-------------------------------------
+            Test();
         }
 
         //控制台页面增加了一条信息
@@ -150,6 +154,23 @@ namespace MasterCode
             }
 
             NowActiveButton = button;
+        }
+
+        //test---------------------------------------------
+        private void Test()
+        {
+            Random random = new Random();
+            ExcelDatasModel model = new ExcelDatasModel();
+
+            for(int counter = 1; counter <= 20; counter++)
+            {
+                for(int  i = 0; i < 30; i++)
+                {
+                    model.AllDevicesDatas[counter].AddOnceData((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
+                }
+            }
+
+            model.SaveAsXLSX();
         }
     }
 }

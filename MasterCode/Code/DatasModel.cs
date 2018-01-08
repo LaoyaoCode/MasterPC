@@ -6,7 +6,7 @@ using System.Text;
 using System.Xml.Serialization;
 using MasterCode.Code.Tools;
 using MasterCode.Code;
-using Excel = Microsoft.Office.Interop.Excel;
+using OfficeOpenXml;
 
 namespace MasterCode.Code
 {
@@ -81,6 +81,25 @@ namespace MasterCode.Code
             }
         }
 
+        public float GetLightIntensityAverage()
+        {
+            float sum = 0.0f;
+
+            for(int counter = 0; counter < LightIntensity.Count; counter++)
+            {
+                sum += LightIntensity[counter];
+            }
+
+            if(LightIntensity.Count == 0)
+            {
+                return 0.0f;
+            }
+            else
+            {
+                return sum / LightIntensity.Count;
+            }
+        }
+
         /// <summary>
         /// 将这个对象存储到xml文件中
         /// test success , 2018.1.6
@@ -136,7 +155,9 @@ namespace MasterCode.Code
 
         public ExcelDatasModel()
         {
-            for(int counter = 1; counter <= 20; counter ++)
+            CheckExcelDefaultDir();
+
+            for (int counter = 1; counter <= 20; counter ++)
             {
                 AllDevicesDatas.Add(counter, new OneDeviceDatasModel());
             }
@@ -149,6 +170,7 @@ namespace MasterCode.Code
         {
             String fileName;
             int counterForRow = 2;
+            ExcelWorksheet workSheet;
 
             if (UserPerferControler.UnityIns.GetExcelPath() == "NULL")
             {
@@ -157,42 +179,52 @@ namespace MasterCode.Code
             else
             {
                 fileName = UserPerferControler.UnityIns.GetExcelPath() + "\\" + DateTime.Now.ToLongDateString() + "__" + DateTime.Now.ToLongTimeString().Replace(':', '.') + ".xlsx";
-            }         
-
-            // Load up Excel, then make a new empty workbook.
-            Excel.Application excelApp = new Excel.Application();
-            excelApp.Workbooks.Add();
-
-            // This example uses a single workSheet.
-            Excel._Worksheet workSheet = excelApp.ActiveSheet;
-
-            // Establish column headings in cells.
-            workSheet.Cells[1, "A"] = "器件ID";
-            workSheet.Cells[1, "B"] = "采集编号(0为最先采集的数据)";
-            workSheet.Cells[1, "C"] = "光照强度";
-            workSheet.Cells[1, "D"] = "电压";
-            workSheet.Cells[1, "E"] = "功率因素";
-            workSheet.Cells[1, "F"] = "Somethings1";
-            workSheet.Cells[1, "G"] = "Somethings2";
-
-            for (int counterForDevice = 1; counterForDevice <= 20; counterForDevice++)
-            {
-                for(int counterForData = 0; counterForData < AllDevicesDatas[counterForDevice].Count(); counterForData++)
-                {
-                    workSheet.Cells[counterForRow, "A"] = counterForDevice.ToString();
-                    workSheet.Cells[counterForRow, "B"] = counterForData.ToString();
-                    workSheet.Cells[counterForRow, "C"] = AllDevicesDatas[counterForDevice].LightIntensity[counterForData].ToString("0.00");
-                    workSheet.Cells[counterForRow, "D"] = AllDevicesDatas[counterForDevice].Voltage[counterForData].ToString("0.00");
-                    workSheet.Cells[counterForRow, "E"] = AllDevicesDatas[counterForDevice].PowerFactor[counterForData].ToString("0.00");
-                    workSheet.Cells[counterForRow, "F"] = AllDevicesDatas[counterForDevice].Somethings1[counterForData].ToString("0.00");
-                    workSheet.Cells[counterForRow, "G"] = AllDevicesDatas[counterForDevice].Somethings2[counterForData].ToString("0.00");
-
-                    counterForRow++;
-                }
             }
 
-            workSheet.SaveAs(fileName);
-            excelApp.Quit();
+            using (var p = new ExcelPackage())
+            {
+                workSheet = p.Workbook.Worksheets.Add("数据");
+
+                // Establish column headings in cells.
+                workSheet.Cells[1, 1].Value = "器件ID";
+                workSheet.Cells[1, 2].Value = "采集编号(0为最先采集的数据)";
+                workSheet.Cells[1, 3].Value = "光照强度";
+                workSheet.Cells[1, 4].Value = "电压";
+                workSheet.Cells[1, 5].Value = "功率因素";
+                workSheet.Cells[1, 6].Value = "光照平均值";
+                workSheet.Cells[1, 7].Value = "Somethings1";
+                workSheet.Cells[1, 8].Value = "Somethings2";
+
+                for (int counterForDevice = 1; counterForDevice <= 20; counterForDevice++)
+                {
+                    for (int counterForData = 0; counterForData < AllDevicesDatas[counterForDevice].Count(); counterForData++)
+                    {
+                        workSheet.Cells[counterForRow, 1].Value = counterForDevice.ToString();
+                        workSheet.Cells[counterForRow, 2].Value = counterForData.ToString();
+                        workSheet.Cells[counterForRow, 3].Value = AllDevicesDatas[counterForDevice].LightIntensity[counterForData].ToString("0.00");
+                        workSheet.Cells[counterForRow, 4].Value = AllDevicesDatas[counterForDevice].Voltage[counterForData].ToString("0.00");
+                        workSheet.Cells[counterForRow, 5].Value = AllDevicesDatas[counterForDevice].PowerFactor[counterForData].ToString("0.00");
+                        workSheet.Cells[counterForRow, 6].Value = AllDevicesDatas[counterForDevice].GetLightIntensityAverage().ToString("0.00");
+                        workSheet.Cells[counterForRow, 7].Value = AllDevicesDatas[counterForDevice].Somethings1[counterForData].ToString("0.00");
+                        workSheet.Cells[counterForRow, 8].Value = AllDevicesDatas[counterForDevice].Somethings2[counterForData].ToString("0.00");
+
+                        counterForRow++;
+                    }
+                }
+
+                p.SaveAs(new FileInfo(fileName));
+            }  
+        }
+
+        private void CheckExcelDefaultDir()
+        {
+            //默认数据文件夹是否存在
+            DirectoryInfo datasDir = new DirectoryInfo(PathStaicCollection.DefaultExcelDir);
+            //不存在则创建
+            if (!datasDir.Exists)
+            {
+                datasDir.Create();
+            }
         }
     }
 }

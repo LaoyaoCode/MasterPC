@@ -32,8 +32,6 @@ namespace MasterCode.MControls
         
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            CheckExcelDefaultDir();
-
             if (UserPerferControler.UnityIns.GetExcelPath() == "NULL")
             {
                 ExcelPathTBlock.Text = "Excel Datas Dir : " + PathStaicCollection.DefaultExcelDir;
@@ -74,17 +72,5 @@ namespace MasterCode.MControls
 
             System.Diagnostics.Process.Start("explorer.exe", path);
         }
-
-        private void CheckExcelDefaultDir()
-        {
-            //默认数据文件夹是否存在
-            DirectoryInfo datasDir = new DirectoryInfo(PathStaicCollection.DefaultExcelDir);
-            //不存在则创建
-            if (!datasDir.Exists)
-            {
-                datasDir.Create();
-            }
-        }
-
     }
 }
