@@ -61,6 +61,7 @@
     <Reference Include="System.Data.SQLite, Version=1.0.106.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.106.0\lib\net40\System.Data.SQLite.dll</HintPath>
     </Reference>
+    <Reference Include="System.Management" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.5.0\lib\net40\System.Windows.Interactivity.dll</HintPath>
@@ -94,6 +95,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\ComControler.cs" />
+    <Compile Include="Code\ComNamesDispose.cs" />
     <Compile Include="Code\DatasModel.cs" />
     <Compile Include="Code\PathStaicCollection.cs" />
     <Compile Include="Code\SQL\DBControler.cs" />

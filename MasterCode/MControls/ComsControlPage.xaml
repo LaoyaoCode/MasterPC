@@ -8,7 +8,7 @@
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:MSC="clr-namespace:MasterCode.MControls"
              xmlns:IconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             d:DesignHeight="600" d:DesignWidth="700">
+             d:DesignHeight="600" d:DesignWidth="700" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <Style x:Key="MComSelectTButtonStyle" TargetType="{x:Type MSC:ImageTextButton}">
             <Setter Property="ActiveRectBrush">

@@ -1,4 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <User>
   <ExcelDicPath>NULL</ExcelDicPath>
+  <Parity>None</Parity>
+  <HandShake>None</HandShake>
+  <BaudRate>115200</BaudRate>
+  <StopBits>One</StopBits>
 </User>

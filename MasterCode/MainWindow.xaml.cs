@@ -45,6 +45,8 @@ namespace MasterCode
             new RecordDBControler();
             //创建并且初始化用户喜好控制器
             new UserPerferControler();
+            //创建并且初始化串口控制器
+            new ComControler();
 
             //初始化按钮点击事件并且赋予按钮ID
             //MainPageButton ID = 1
