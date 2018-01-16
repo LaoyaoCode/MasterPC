@@ -64,9 +64,8 @@ namespace MasterCode
             //增加控制台界面增加信息代理
             ConsolePageIns.ConsoleAddAMessage += ConsolePageIns_ConsoleAddAMessage;
 
-
-            //test-------------------------------------
-            Test();
+            //提示程序初始化完成
+            ConsolePage.UnityIns.AddMessage(AConsoleMessage.MessageKindEnum.Normal, "程序初始化完成");
         }
 
         //控制台页面增加了一条信息

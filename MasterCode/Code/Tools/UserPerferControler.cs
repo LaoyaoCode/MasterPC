@@ -60,7 +60,7 @@ namespace MasterCode.Code.Tools
             rootNode.SelectSingleNode(BaudRateNodeName).InnerText = para.BaudRate.ToString();
             rootNode.SelectSingleNode(HandShakeNodeName).InnerText = para.ChooseHandShake.ToString();
             rootNode.SelectSingleNode(ParityNodeName).InnerText = para.ChooseParity.ToString();
-            rootNode.SelectSingleNode(StopBitsNodeName).InnerText = para.ChooseParity.ToString();
+            rootNode.SelectSingleNode(StopBitsNodeName).InnerText = para.ChooseStopBits.ToString();
 
             document.Save(PathStaicCollection.UserPreferFile);
 

@@ -78,7 +78,7 @@
                                 <TextBlock x:Name="StopBitsTB" Text="Stop  Bits" Foreground="{StaticResource NormalTextColor}" FontSize="{StaticResource NormalTextSize}" Margin="50,0,0,0"/>
                             </Grid>
 
-                            <Grid Margin="20,20,10,0">
+                            <Grid Margin="20,20,10,0" x:Name="StopBitGrid">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -101,7 +101,7 @@
                             <TextBlock x:Name="ParityTB" Text="Parity" Foreground="{StaticResource NormalTextColor}" FontSize="{StaticResource NormalTextSize}" Margin="50,0,0,0"/>
                         </Grid>
 
-                        <Grid Margin="20,20,10,0">
+                        <Grid Margin="20,20,10,0" x:Name="ParityGrid">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -111,11 +111,11 @@
                                 <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <RadioButton GroupName="ParityRBG" Grid.Column="0" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="None">None</RadioButton>
-                            <RadioButton GroupName="ParityRBG" Grid.Column="1" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="Space">Space</RadioButton>
-                            <RadioButton GroupName="ParityRBG" Grid.Column="2" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="Even">Even</RadioButton>
-                            <RadioButton GroupName="ParityRBG" Grid.Column="0" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,10,0,0" Tag="Mark">Mark</RadioButton>
-                            <RadioButton GroupName="ParityRBG" Grid.Column="1" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,10,0,0" Tag="Odd">Odd</RadioButton>
+                            <RadioButton GroupName="ParityRBG" Grid.Column="0" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="None" Checked="ParityButton_Checked">None</RadioButton>
+                            <RadioButton GroupName="ParityRBG" Grid.Column="1" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="Space" Checked="ParityButton_Checked">Space</RadioButton>
+                            <RadioButton GroupName="ParityRBG" Grid.Column="2" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="Even" Checked="ParityButton_Checked">Even</RadioButton>
+                            <RadioButton GroupName="ParityRBG" Grid.Column="0" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,10,0,0" Tag="Mark" Checked="ParityButton_Checked">Mark</RadioButton>
+                            <RadioButton GroupName="ParityRBG" Grid.Column="1" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,10,0,0" Tag="Odd" Checked="ParityButton_Checked">Odd</RadioButton>
                         </Grid>
                         <Rectangle Fill="{DynamicResource LineBrush}" Height="1" Margin="20,20,20,20"></Rectangle>
                     </StackPanel>
@@ -125,7 +125,7 @@
                             <TextBlock x:Name="HandShakeTB" Text="HandShake" Foreground="{StaticResource NormalTextColor}" FontSize="{StaticResource NormalTextSize}" Margin="50,0,0,0"/>
                         </Grid>
 
-                        <Grid Margin="20,20,10,0">
+                        <Grid Margin="20,20,10,0" x:Name="HandShakeGrid">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -134,10 +134,10 @@
                                 <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <RadioButton GroupName="HandShakeRBG" Grid.Column="0" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="None">None</RadioButton>
-                            <RadioButton GroupName="HandShakeRBG" Grid.Column="1" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="RTS">Request  To  Send</RadioButton>
-                            <RadioButton GroupName="HandShakeRBG" Grid.Column="0" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,10,0,0" Tag="XOXF">XOnXOff</RadioButton>
-                            <RadioButton GroupName="HandShakeRBG" Grid.Column="1" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,10,0,0" Tag="RTSXOXF">Request  To  Send  XOnXOff</RadioButton>
+                            <RadioButton GroupName="HandShakeRBG" Grid.Column="0" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="None" Checked="HandShakeButton_Checked">None</RadioButton>
+                            <RadioButton GroupName="HandShakeRBG" Grid.Column="1" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="RTS" Checked="HandShakeButton_Checked">Request  To  Send</RadioButton>
+                            <RadioButton GroupName="HandShakeRBG" Grid.Column="0" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,10,0,0" Tag="XOXF" Checked="HandShakeButton_Checked">XOnXOff</RadioButton>
+                            <RadioButton GroupName="HandShakeRBG" Grid.Column="1" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,10,0,0" Tag="RTSXOXF" Checked="HandShakeButton_Checked">Request  To  Send  XOnXOff</RadioButton>
                         </Grid>
                         <Rectangle Fill="{DynamicResource LineBrush}" Height="1" Margin="20,20,20,20"></Rectangle>
                     </StackPanel>
@@ -147,7 +147,7 @@
                             <TextBlock x:Name="BandRateTB" Text="BandRate" Foreground="{StaticResource NormalTextColor}" FontSize="{StaticResource NormalTextSize}" Margin="50,0,0,0"/>
                         </Grid>
 
-                        <Grid Margin="20,20,10,10">
+                        <Grid Margin="20,20,10,10" x:Name="BaudRateGrid">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -159,18 +159,18 @@
                                 <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="0" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="300">300</RadioButton>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="1" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="600">600</RadioButton>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="2" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="1200">1200</RadioButton>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="3" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="2400">2400</RadioButton>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="0" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="4800">4800</RadioButton>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="1" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="9600">9600</RadioButton>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="2" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="19200">19200</RadioButton>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="3" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="38400">38400</RadioButton>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="0" Grid.Row="2" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="43000">43000</RadioButton>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="1" Grid.Row="2" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="56000">56000</RadioButton>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="2" Grid.Row="2" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="57600">57600</RadioButton>
-                            <RadioButton GroupName="BandRateRBG" Grid.Column="3" Grid.Row="2" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="115200">115200</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="0" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="300" Checked="BaudRateButton_Checked">300</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="1" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="600" Checked="BaudRateButton_Checked">600</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="2" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="1200" Checked="BaudRateButton_Checked">1200</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="3" Grid.Row="0" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="2400" Checked="BaudRateButton_Checked">2400</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="0" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="4800" Checked="BaudRateButton_Checked">4800</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="1" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="9600" Checked="BaudRateButton_Checked">9600</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="2" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="19200" Checked="BaudRateButton_Checked">19200</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="3" Grid.Row="1" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,20" Tag="38400" Checked="BaudRateButton_Checked">38400</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="0" Grid.Row="2" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="43000" Checked="BaudRateButton_Checked">43000</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="1" Grid.Row="2" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="56000" Checked="BaudRateButton_Checked">56000</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="2" Grid.Row="2" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="57600" Checked="BaudRateButton_Checked">57600</RadioButton>
+                            <RadioButton GroupName="BandRateRBG" Grid.Column="3" Grid.Row="2" Foreground="{StaticResource NormalTextColor}" FontSize="16" FontFamily="Microsoft YaHei" Margin="0,0,0,10" Tag="115200" Checked="BaudRateButton_Checked">115200</RadioButton>
                         </Grid>
                         <Rectangle Fill="{DynamicResource LineBrush}" Height="1" Margin="20,0,20,20"></Rectangle>
                     </StackPanel>

@@ -72,6 +72,7 @@ namespace MasterCode.Code
 
                 if (LightIntensity.Count >= 30)
                 {
+
                     return true;
                 }
                 else
@@ -157,7 +158,7 @@ namespace MasterCode.Code
         {
             CheckExcelDefaultDir();
 
-            for (int counter = 1; counter <= 20; counter ++)
+            for (int counter = 0; counter <= 19; counter ++)
             {
                 AllDevicesDatas.Add(counter, new OneDeviceDatasModel());
             }
@@ -225,6 +226,27 @@ namespace MasterCode.Code
             {
                 datasDir.Create();
             }
+        }
+
+        /// <summary>
+        /// 是否已经装满了
+        /// </summary>
+        /// <returns></returns>
+        public bool IsFull()
+        {
+            bool full = true;
+
+            for(int counter = 0; counter < 20; counter++)
+            {
+                //只要有一个没有满，则，代表整体未满
+                if(AllDevicesDatas[counter].Count() != OneDeviceDatasModel.MaxCount)
+                {
+                    full = false;
+                    break;
+                }
+            }
+
+            return full;
         }
     }
 }
