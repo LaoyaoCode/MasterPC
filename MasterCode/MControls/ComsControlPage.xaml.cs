@@ -29,7 +29,9 @@ namespace MasterCode.MControls
         private List<ImageTextButton> TotalPorts = new List<ImageTextButton>();
         private ImageTextButton NowSelectComs = null;
         private System.Windows.Threading.DispatcherTimer InsideSecondTimer = new System.Windows.Threading.DispatcherTimer();//初始化时钟
-      
+        //串口是否已经打开了
+        private bool IsPortOpen = false;
+
         //radio button 就算使用 Parity1RB.IsChecked = true; 
         //软件设置其是否被check
         //也会触发点击事件
@@ -41,8 +43,94 @@ namespace MasterCode.MControls
             InsideSecondTimer.IsEnabled = true;//开启定时器
             InsideSecondTimer.Tick += InsideSecondTimer_Tick; ;//添加时间代理
             InsideSecondTimer.Start();
+        }
 
-            ComOpenOrCloseTB.IsEnabled = false;
+        private void PortOpenOrCloseB_Click()
+        {
+            if(!IsPortOpen)
+            {
+                //串口未选择，不允许开启
+                if (NowSelectComs == null)
+                {
+                    ComsSelectSP.IsEnabled = true;
+                    StopBitsSP.IsEnabled = true;
+                    ParitySP.IsEnabled = true;
+                    HandshakeSP.IsEnabled = true;
+                    BandRateSP.IsEnabled = true;
+
+                    IsPortOpen = false;
+                    ComOpenOrCloseTB.ButtonIcon = MahApps.Metro.IconPacks.PackIconMaterialKind.Play;
+                    ComOpenOrCloseTB.ToolTip = "打开串口";
+                }
+                //串口已经选择，允许开启
+                else
+                {
+                    //保存之前开启串口的时候的参数
+                    UserPerferControler.UnityIns.SetPortPara(SelectPara);
+                    ComControler.UnityIns.SetPortPara(SelectPara);
+
+                    //如果串口开启成功
+                    if(ComControler.UnityIns.OpenPort())
+                    {
+                        IsPortOpen = true;
+                        ComOpenOrCloseTB.ButtonIcon = MahApps.Metro.IconPacks.PackIconMaterialKind.Pause;
+
+                        ComsSelectSP.IsEnabled = false;
+                        StopBitsSP.IsEnabled = false;
+                        ParitySP.IsEnabled = false;
+                        HandshakeSP.IsEnabled = false;
+                        BandRateSP.IsEnabled = false;
+                        ComOpenOrCloseTB.ToolTip = "关闭串口";
+                    }
+                    //串口开启失败
+                    else
+                    {
+                        ComsSelectSP.IsEnabled = true;
+                        StopBitsSP.IsEnabled = true;
+                        ParitySP.IsEnabled = true;
+                        HandshakeSP.IsEnabled = true;
+                        BandRateSP.IsEnabled = true;
+
+                        IsPortOpen = false;
+                        ComOpenOrCloseTB.ButtonIcon = MahApps.Metro.IconPacks.PackIconMaterialKind.Play;
+                        ComOpenOrCloseTB.ToolTip = "打开串口";
+                    }
+
+                    //test--------------------
+                    ComControler.UnityIns.SendCommandToMCU(ComControler.CommandEnum.BeginTrans);
+                    ComControler.UnityIns.SendCommandEvent += (x) =>
+                    {
+                        this.Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            if (x)
+                            {
+                                ConsolePage.UnityIns.AddMessage(AConsoleMessage.MessageKindEnum.Important, "串口数据发送成功");
+                            }
+                            else
+                            {
+                                ConsolePage.UnityIns.AddMessage(AConsoleMessage.MessageKindEnum.Error, "串口数据发送失败");
+                            }
+                        }
+                        ));
+                    };
+                }
+            }
+            //关闭串口
+            else
+            {
+                ComsSelectSP.IsEnabled = true;
+                StopBitsSP.IsEnabled = true;
+                ParitySP.IsEnabled = true;
+                HandshakeSP.IsEnabled = true;
+                BandRateSP.IsEnabled = true;
+
+                IsPortOpen = false;
+                ComOpenOrCloseTB.ButtonIcon = MahApps.Metro.IconPacks.PackIconMaterialKind.Play;
+                ComOpenOrCloseTB.ToolTip = "打开串口";
+
+                //关闭串口
+                ComControler.UnityIns.PortClosed();
+            }
         }
 
         private void InsideSecondTimer_Tick(object sender, EventArgs e)
@@ -62,7 +150,16 @@ namespace MasterCode.MControls
                 if(ComControler.UnityIns.IsPortOpen())
                 {
                     ComControler.UnityIns.PortClosed();
-                    ComOpenOrCloseTB.IsChecked = false;
+
+                    //设置为串口已经关闭，并且修改图标
+                    IsPortOpen = false;
+                    ComOpenOrCloseTB.ButtonIcon = MahApps.Metro.IconPacks.PackIconMaterialKind.Play;
+
+                    ComsSelectSP.IsEnabled = true;
+                    StopBitsSP.IsEnabled = true;
+                    ParitySP.IsEnabled = true;
+                    HandshakeSP.IsEnabled = true;
+                    BandRateSP.IsEnabled = true;
                 }
             }
 
@@ -102,15 +199,6 @@ namespace MasterCode.MControls
                     ComsSelectSP.Children.Add(comButton);
                     TotalPorts.Add(comButton);
                 }
-            }
-
-            if (NowSelectComs == null)
-            {
-                ComOpenOrCloseTB.IsEnabled = false;
-            }
-            else
-            {
-                ComOpenOrCloseTB.IsEnabled = true;
             }
         }
 
@@ -190,60 +278,7 @@ namespace MasterCode.MControls
         {
             SelectPara.BaudRate = int.Parse((string)((RadioButton)sender).Tag);
         }
-
-        //串口开启
-        private void ComOpenOrCloseTB_Checked(object sender, RoutedEventArgs e)
-        {
-            ComsSelectSP.IsEnabled = false;
-            StopBitsSP.IsEnabled = false;
-            ParitySP.IsEnabled = false;
-            HandshakeSP.IsEnabled = false;
-            BandRateSP.IsEnabled = false;
-            ComOpenOrCloseTB.ToolTip = "关闭串口";
-
-            //保存之前开启串口的时候的参数
-            UserPerferControler.UnityIns.SetPortPara(SelectPara);
-            ComControler.UnityIns.SetPortPara(SelectPara);
-
-            ComControler.UnityIns.OpenPort();
-
-
-
-            //test--------------------
-            ComControler.UnityIns.SendCommandToMCU(ComControler.CommandEnum.BeginTrans);
-            ComControler.UnityIns.SendCommandEvent += (x) =>
-            {
-                this.Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    if(x)
-                    {
-                        ConsolePage.UnityIns.AddMessage(AConsoleMessage.MessageKindEnum.Important, "串口数据发送成功");
-                    }
-                    else
-                    {
-                        ConsolePage.UnityIns.AddMessage(AConsoleMessage.MessageKindEnum.Error, "串口数据发送失败");
-                    }
-                }
-                ));
-            };
-        }
-
-
        
-
-        //串口关闭
-        private void ComOpenOrCloseTB_Unchecked(object sender, RoutedEventArgs e)
-        {
-            ComsSelectSP.IsEnabled = true;
-            StopBitsSP.IsEnabled = true;
-            ParitySP.IsEnabled = true;
-            HandshakeSP.IsEnabled = true;
-            BandRateSP.IsEnabled = true;
-            ComOpenOrCloseTB.ToolTip = "打开串口";
-            //关闭串口
-            ComControler.UnityIns.PortClosed();
-        }
-
         /// <summary>
         /// 将停止位枚举值转化为标签值
         /// </summary>

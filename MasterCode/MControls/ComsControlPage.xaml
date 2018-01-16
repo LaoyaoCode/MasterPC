@@ -40,17 +40,9 @@
             <Rectangle Fill="{DynamicResource LeftThumbBrush}" Grid.Column="0" Height="1" Margin="20,0,0,0"></Rectangle>
             <TextBlock Text="Coms  Control" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource NormalTextColor}" FontSize="22" Margin="10,0"/>
             <Rectangle Fill="{DynamicResource RightThumbBrush}" Grid.Column="3" Height="1" Margin="0,0,20,0"></Rectangle>
-            <ToggleButton x:Name="ComOpenOrCloseTB" ToolTip="开启串口" Width="40" Height="40" Grid.Column="2" Margin="0" Style="{StaticResource MetroCircleToggleButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="ComOpenOrCloseTB_Checked" Unchecked="ComOpenOrCloseTB_Unchecked">
-                <Rectangle Width="20" Height="20" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ToggleButton}}}">
-                    <Rectangle.OpacityMask>
-                        <VisualBrush Stretch="Uniform">
-                            <VisualBrush.Visual>
-                                <IconPacks:PackIconFontAwesome Kind="Cogs"  Opacity="0.6"/>
-                            </VisualBrush.Visual>
-                        </VisualBrush>
-                    </Rectangle.OpacityMask>
-                </Rectangle>
-            </ToggleButton>
+            <MSC:IconButton x:Name="ComOpenOrCloseTB" ButtonIcon="Play" ToolTip="开启串口" Width="40" Height="40" Grid.Column="2" Margin="0"  HorizontalAlignment="Center" VerticalAlignment="Center" IconColor="{DynamicResource LeftThumbBrush}" NormalBackColor="{DynamicResource AppBackBrush}" IconClick="PortOpenOrCloseB_Click">
+                
+            </MSC:IconButton>
         </Grid>
         <Grid Margin="0,80,0,0" >
             <ScrollViewer Style="{StaticResource MScrollView}">
