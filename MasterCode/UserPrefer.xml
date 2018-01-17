@@ -5,4 +5,5 @@
   <HandShake>None</HandShake>
   <BaudRate>115200</BaudRate>
   <StopBits>One</StopBits>
+  <PeroidHours>1</PeroidHours>
 </User>

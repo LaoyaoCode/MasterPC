@@ -95,24 +95,6 @@ namespace MasterCode.MControls
                         ComOpenOrCloseTB.ButtonIcon = MahApps.Metro.IconPacks.PackIconMaterialKind.Play;
                         ComOpenOrCloseTB.ToolTip = "打开串口";
                     }
-
-                    //test--------------------
-                    ComControler.UnityIns.SendCommandToMCU(ComControler.CommandEnum.BeginTrans);
-                    ComControler.UnityIns.SendCommandEvent += (x) =>
-                    {
-                        this.Dispatcher.BeginInvoke(new Action(() =>
-                        {
-                            if (x)
-                            {
-                                ConsolePage.UnityIns.AddMessage(AConsoleMessage.MessageKindEnum.Important, "串口数据发送成功");
-                            }
-                            else
-                            {
-                                ConsolePage.UnityIns.AddMessage(AConsoleMessage.MessageKindEnum.Error, "串口数据发送失败");
-                            }
-                        }
-                        ));
-                    };
                 }
             }
             //关闭串口

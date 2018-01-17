@@ -29,7 +29,17 @@
         <Grid Height="40" VerticalAlignment="Top" Margin="20,130,0,0">
             <TextBlock Foreground="{DynamicResource NormalTextColor}" FontSize="16" HorizontalAlignment="Left" Text="Datas" VerticalAlignment="Center" ToolTip="数据获取进度"></TextBlock>
             <Rectangle Height="2" Fill="{DynamicResource MenuMouseOver}" Margin="80,0,20,0" VerticalAlignment="Center"></Rectangle>
-            <Rectangle x:Name="DatasGetPercentLine" Height="2" Fill="{DynamicResource LeftThumbBrush}" Margin="80,0,20,0" VerticalAlignment="Center"></Rectangle>
+            <Rectangle x:Name="DatasGetPercentLine" Height="2" Width="580" Fill="{DynamicResource LeftThumbBrush}" Margin="80,0,20,0" VerticalAlignment="Center" HorizontalAlignment="Left" ></Rectangle>
+        </Grid>
+        <Grid Height="40" VerticalAlignment="Top" Margin="20,170,0,0">
+            <TextBlock Foreground="{DynamicResource NormalTextColor}" FontSize="16" HorizontalAlignment="Left" Text="Period" VerticalAlignment="Center" ToolTip="周期进度"></TextBlock>
+            <Rectangle Height="2" Fill="{DynamicResource MenuMouseOver}" Margin="80,0,20,0" VerticalAlignment="Center"></Rectangle>
+            <Rectangle x:Name="PeriodPercentLine" Height="2" Width="580" Fill="{DynamicResource RightThumbBrush}" Margin="80,0,20,0" VerticalAlignment="Center" HorizontalAlignment="Left" ></Rectangle>
+        </Grid>
+        <Grid Height="40" VerticalAlignment="Top" Margin="20,210,0,0">
+            <TextBlock Foreground="{DynamicResource NormalTextColor}" FontSize="16" HorizontalAlignment="Left" Text="Period Set" VerticalAlignment="Center" ToolTip="周期设定(重启后生效)"></TextBlock>
+            <Slider  x:Name="PeroidSetSlider"  Width="400"  Margin="100,0,20,0" VerticalAlignment="Center" HorizontalAlignment="Left" TickPlacement="Both" IsSnapToTickEnabled="True" Maximum="12" Minimum="1" Value="{Binding Text, ElementName=PeroidSetTB}"></Slider>
+            <TextBlock x:Name="PeroidSetTB" Foreground="{DynamicResource NormalTextColor}" FontSize="16" HorizontalAlignment="Left"  VerticalAlignment="Center" ToolTip="设定时间"  Margin="520,0,0,0"></TextBlock>
         </Grid>
     </Grid>
 </UserControl>

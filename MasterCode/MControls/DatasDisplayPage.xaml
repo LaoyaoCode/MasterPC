@@ -63,7 +63,7 @@
         <Grid Margin="0,80,0,0">
             <ScrollViewer Style="{StaticResource MScrollView}">
                 <StackPanel Orientation="Vertical" >
-                    <vChart:Chart x:Name="DTotalChart" Grid.Row="0" Template="{StaticResource LYChart}"  AnimatedUpdate="true" IndicatorEnabled="True" ZoomingEnabled="True"  Theme="Theme2" Background="{x:Null}" BorderBrush="{x:Null}" Height="300">
+                    <vChart:Chart x:Name="DTotalChart" Grid.Row="0" Template="{StaticResource LYChart}"  AnimatedUpdate="true" IndicatorEnabled="True" ZoomingEnabled="True"  Theme="Theme2" Background="{x:Null}" BorderBrush="{x:Null}" Height="400">
                         <vChart:Chart.Titles>
                             <vChart:Title Text="Total Datas"></vChart:Title>
                         </vChart:Chart.Titles>
@@ -72,18 +72,18 @@
                             </vChart:Axis>
                         </vChart:Chart.AxesY>
 
-                        <vChart:Chart.AxesX>
+                        <!--<vChart:Chart.AxesX>
                             <vChart:Axis IntervalType="Number" Title="Times" Interval="1" LineThickness="0">
                             </vChart:Axis>
-                        </vChart:Chart.AxesX>
+                        </vChart:Chart.AxesX>-->
                     </vChart:Chart>
                     <Grid>
-                        <ScrollViewer HorizontalAlignment="Right" Width="150" Style="{StaticResource MScrollView}">
+                        <ScrollViewer HorizontalAlignment="Right" Width="180" Style="{StaticResource MScrollView}" Background="#FF7C7C7C" Margin="0,25,0,0">
                             <StackPanel x:Name="OnceDataOfDeviceSelectSP">
                                 
                             </StackPanel>
                         </ScrollViewer>
-                        <vChart:Chart x:Name="OnceDataChart" Grid.Row="0" Template="{StaticResource LYChart}"  AnimatedUpdate="true" IndicatorEnabled="True" ZoomingEnabled="True"  Theme="Theme2" Background="{x:Null}" BorderBrush="{x:Null}" Height="300" Margin="0,0,150,0">
+                        <vChart:Chart x:Name="OnceDataChart" Grid.Row="0" Template="{StaticResource LYChart}"  AnimatedUpdate="true" IndicatorEnabled="True" ZoomingEnabled="True"  Theme="Theme2" Background="{x:Null}" BorderBrush="{x:Null}" Height="400" Margin="0,0,180,0">
                             <vChart:Chart.Titles>
                                 <vChart:Title Text="Once Datas"></vChart:Title>
                             </vChart:Chart.Titles>
@@ -92,10 +92,10 @@
                                 </vChart:Axis>
                             </vChart:Chart.AxesY>
 
-                            <vChart:Chart.AxesX>
+                            <!--<vChart:Chart.AxesX>
                                 <vChart:Axis IntervalType="Number" Title="Times" LineThickness="0">
                                 </vChart:Axis>
-                            </vChart:Chart.AxesX>
+                            </vChart:Chart.AxesX>-->
                         </vChart:Chart>
                     </Grid>
                 </StackPanel>

@@ -16,9 +16,12 @@ namespace MasterCode.Code.Tools
         private const String HandShakeNodeName = "HandShake";
         private const String BaudRateNodeName = "BaudRate";
         private const String StopBitsNodeName = "StopBits";
+        private const String PeroidHoursNodeName = "PeroidHours";
+
         public static UserPerferControler UnityIns = null;
         private String ExcelPath_In;
         private ComControler.PortParaSetStruct PortPara = new ComControler.PortParaSetStruct();
+        private int PeroidHours = 0;
 
         public UserPerferControler()
         {
@@ -39,8 +42,26 @@ namespace MasterCode.Code.Tools
             PortPara.ChooseHandShake =(Handshake) Enum.Parse(typeof(Handshake), rootNode.SelectSingleNode(HandShakeNodeName).InnerText);
             PortPara.ChooseParity = (Parity)Enum.Parse(typeof(Parity), rootNode.SelectSingleNode(ParityNodeName).InnerText);
             PortPara.ChooseStopBits = (StopBits)Enum.Parse(typeof(StopBits), rootNode.SelectSingleNode(StopBitsNodeName).InnerText);
+            PeroidHours = int.Parse(rootNode.SelectSingleNode(PeroidHoursNodeName).InnerText);
         }
 
+        public int GetPeroidHours()
+        {
+            return PeroidHours;
+        }
+
+        public void SetPeroidHours(int hour)
+        {
+            XmlDocument document = new XmlDocument();
+            document.Load(PathStaicCollection.UserPreferFile);
+
+            XmlNode rootNode = document.SelectSingleNode(RootNodeName);
+
+            rootNode.SelectSingleNode(PeroidHoursNodeName).InnerText = hour.ToString();
+            document.Save(PathStaicCollection.UserPreferFile);
+
+            PeroidHours = hour;
+        }
 
         public ComControler.PortParaSetStruct GetPortPara()
         {

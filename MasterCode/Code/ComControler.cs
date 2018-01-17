@@ -12,8 +12,28 @@ namespace MasterCode.Code
 {
     public class ComControler
     {
+        public delegate void DatasCollectFinishedDel(Dictionary<int, RecordModel> datas);
+        /// <summary>
+        /// 数据采集完成之后得代理事件
+        /// </summary>
+        public static event DatasCollectFinishedDel DatasCollectFinishedEvent;
+
         public delegate void SendCommandDel(bool isSuccess) ;
-        public event SendCommandDel SendCommandEvent;
+        public static event SendCommandDel SendCommandEvent;
+
+        public delegate void DatasCollectProgressDel(float percent);
+        /// <summary>
+        /// 采集数据进度
+        /// </summary>
+        public static event  DatasCollectProgressDel DatasCollectProgressEvent;
+        /// <summary>
+        /// 现在采集的数据数目
+        /// </summary>
+        private int CounterForDatas = 0;
+        /// <summary>
+        /// 最大数据数目
+        /// </summary>
+        private const float MaxCountForDatas = 600.0f;
 
         /// <summary>
         /// 命令字枚举体
@@ -58,6 +78,8 @@ namespace MasterCode.Code
         /// 一次采集的数据模型
         /// </summary>
         private ExcelDatasModel ExcelDatas = null;
+        //刚刚收集的数据的数据库信息
+        private Dictionary<int, RecordModel> RightNowCollectDR = new Dictionary<int, RecordModel>();
 
         private System.Windows.Threading.DispatcherTimer InsideTimer = new System.Windows.Threading.DispatcherTimer();//初始化时钟
 
@@ -132,75 +154,90 @@ namespace MasterCode.Code
             }
 
             if(isGetBegin && isGetEnd)
-            {
-                //下位机校验字出现了错误，故而现在不校验，直接叫它发送下一组数据
-                //认为数据总是没有丢包的
+            {          
+                byte checkByte = 0x00;
 
-                //直接开始记录数据
-                //计算器件ID
-                int device = OnePieceDataTemp[4];
-                //计算光强
-                float light = (OnePieceDataTemp[5] * 256 * 256 * 256 + OnePieceDataTemp[6] * 256 * 256 +
-                    OnePieceDataTemp[7] * 256 + OnePieceDataTemp[8]) / 100.0f;
-                float voltage = (OnePieceDataTemp[9] * 256 * 256 * 256 + OnePieceDataTemp[10] * 256 * 256 +
-                    OnePieceDataTemp[11] * 256 + OnePieceDataTemp[12]) / 100.0f;
-                float powerFactor = (OnePieceDataTemp[13] * 256 * 256 * 256 + OnePieceDataTemp[14] * 256 * 256 +
-                    OnePieceDataTemp[15] * 256 + OnePieceDataTemp[16]) / 100.0f;
-                float something1 = (OnePieceDataTemp[17] * 256 * 256 * 256 + OnePieceDataTemp[18] * 256 * 256 +
-                    OnePieceDataTemp[19] * 256 + OnePieceDataTemp[20]) / 100.0f;
-                float something2 = (OnePieceDataTemp[21] * 256 * 256 * 256 + OnePieceDataTemp[22] * 256 * 256 +
-                    OnePieceDataTemp[23] * 256 + OnePieceDataTemp[24]) / 100.0f;
-
-                ConsolePage.UnityIns.AddMessage(AConsoleMessage.MessageKindEnum.Important, "ID " + device + ":" + " " + light + " " + voltage + " " + powerFactor
-                    + " " + something1 + " " + something2);
-
-                //添加一次数据
-                ExcelDatas.AllDevicesDatas[device].AddOnceData(light, voltage, powerFactor, something1, something2);
-
-                //这个设备的数据已经装满了 , 则保存为XML数据，并且将其写入数据库
-                if(ExcelDatas.AllDevicesDatas[device].Count() == OneDeviceDatasModel.MaxCount)
+                for (int counter = 4; counter < OnePieceDataTemp.Length - 5; counter++)
                 {
-                    string fileName = ExcelDatas.AllDevicesDatas[device].SaveAsXMLDatas();
-                    RecordDBControler.UnityIns.AddARecord(new RecordModel(fileName, device), true);
+                    checkByte += OnePieceDataTemp[counter];
                 }
 
-                //如果所有数据已经采集完成了，则保存为EXCEL文件，并且发送结束命令
-                if(ExcelDatas.IsFull())
+                //校验通过，数据可以保存采集
+                //可以开始发送下一组
+                if (checkByte == OnePieceDataTemp[OnePieceDataTemp.Length - 5])
                 {
-                    ExcelDatas.SaveAsXLSX();
-                    SendCommandToMCU(CommandEnum.EndTrans);
+                    //通知进度
+                    CounterForDatas++;
+                    if (DatasCollectProgressEvent != null)
+                    {
+                        DatasCollectProgressEvent.Invoke(CounterForDatas / MaxCountForDatas);
+                    }
+
+                    //直接开始记录数据
+                    //计算器件ID
+                    int device = OnePieceDataTemp[4];
+                    //计算光强
+                    float light = (OnePieceDataTemp[5] * 256 * 256 * 256 + OnePieceDataTemp[6] * 256 * 256 +
+                        OnePieceDataTemp[7] * 256 + OnePieceDataTemp[8]) / 100.0f;
+                    float voltage = (OnePieceDataTemp[9] * 256 * 256 * 256 + OnePieceDataTemp[10] * 256 * 256 +
+                        OnePieceDataTemp[11] * 256 + OnePieceDataTemp[12]) / 100.0f;
+                    float powerFactor = (OnePieceDataTemp[13] * 256 * 256 * 256 + OnePieceDataTemp[14] * 256 * 256 +
+                        OnePieceDataTemp[15] * 256 + OnePieceDataTemp[16]) / 100.0f;
+                    float something1 = (OnePieceDataTemp[17] * 256 * 256 * 256 + OnePieceDataTemp[18] * 256 * 256 +
+                        OnePieceDataTemp[19] * 256 + OnePieceDataTemp[20]) / 100.0f;
+                    float something2 = (OnePieceDataTemp[21] * 256 * 256 * 256 + OnePieceDataTemp[22] * 256 * 256 +
+                        OnePieceDataTemp[23] * 256 + OnePieceDataTemp[24]) / 100.0f;
+
+
+                    //添加一次数据
+                    ExcelDatas.AllDevicesDatas[device].AddOnceData(light, voltage, powerFactor, something1, something2);
+
+                    //这个设备的数据已经装满了 , 则保存为XML数据，并且将其写入数据库
+                    if (ExcelDatas.AllDevicesDatas[device].Count() == OneDeviceDatasModel.MaxCount)
+                    {
+                        string fileName = ExcelDatas.AllDevicesDatas[device].SaveAsXMLDatas();
+                        RecordModel model = new RecordModel(fileName, device);
+                       
+                        RecordDBControler.UnityIns.AddARecord(model, true);
+
+                        //将信息保存在缓存区中
+                        RightNowCollectDR.Add(device, model);
+                    }
+
+                    //如果所有数据已经采集完成了，则保存为EXCEL文件，并且发送结束命令
+                    if (ExcelDatas.IsFull())
+                    {
+                        ExcelDatas.SaveAsXLSX();
+                        ConsolePage.UnityIns.AddMessage(AConsoleMessage.MessageKindEnum.Important, "采集完成");
+
+                        //数据采集完成，调用代理
+                        if(DatasCollectFinishedEvent != null)
+                        {
+                            DatasCollectFinishedEvent.Invoke(RightNowCollectDR);
+                        }
+
+                        SendCommandToMCU(CommandEnum.EndTrans);
+                    }
+                    //采集还未结束，则发送下一帧数据命令
+                    else
+                    {
+                        SendCommandToMCU(CommandEnum.CheckSuccess);
+                    }
+
                 }
-                //采集还未结束，则发送下一帧数据命令
+                //校验失败，数据需要再次发送
                 else
                 {
-                    SendCommandToMCU(CommandEnum.CheckSuccess);
+                    ConsolePage.UnityIns.AddMessage(AConsoleMessage.MessageKindEnum.Error, "校验失败，重新采集当前帧");
+                    SendCommandToMCU(CommandEnum.CheckFailed);
                 }
 
+
                 //清空缓存区域
-                for(int counter = 0; counter < OnePieceDataTemp.Length; counter++)
+                for (int counter = 0; counter < OnePieceDataTemp.Length; counter++)
                 {
                     OnePieceDataTemp[counter] = 0x00;
                 }
-
-                //byte checkByte = 0x00;
-
-                //for (int counter = 4; counter < OnePieceDataTemp.Length - 5; counter++)
-                //{
-                //    checkByte += OnePieceDataTemp[counter];
-                //}
-
-                ////校验通过，数据可以保存采集
-                ////可以开始发送下一组
-                //if (checkByte == OnePieceDataTemp[OnePieceDataTemp.Length - 5])
-                //{
-
-
-                //}
-                ////校验失败，数据需要再次发送
-                //else
-                //{
-
-                //}
             }
         }
 
@@ -276,6 +313,11 @@ namespace MasterCode.Code
             if(command == CommandEnum.BeginTrans)
             {
                 ExcelDatas = new ExcelDatasModel();
+                //清理缓存
+                RightNowCollectDR.Clear();
+                ConsolePage.UnityIns.AddMessage(AConsoleMessage.MessageKindEnum.Important, "开始采集");
+
+                CounterForDatas = 0;
             }
 
             if(!DisposePort.IsOpen)

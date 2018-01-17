@@ -196,7 +196,7 @@ namespace MasterCode.Code
                 workSheet.Cells[1, 7].Value = "Somethings1";
                 workSheet.Cells[1, 8].Value = "Somethings2";
 
-                for (int counterForDevice = 1; counterForDevice <= 20; counterForDevice++)
+                for (int counterForDevice = 0; counterForDevice <= 19; counterForDevice++)
                 {
                     for (int counterForData = 0; counterForData < AllDevicesDatas[counterForDevice].Count(); counterForData++)
                     {

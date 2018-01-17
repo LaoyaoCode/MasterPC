@@ -81,7 +81,7 @@
         <MSC:MainPage x:Name="MainPageIns" Visibility="Collapsed"/>
         <MSC:ComsControlPage x:Name="ComsControlPageIns" Visibility="Collapsed"/>
         <MSC:ConsolePage x:Name="ConsolePageIns" Visibility="Collapsed"/>
-        <MSC:DatasDisplayPage x:Name="DatasDisplayPageIns" Visibility="Collapsed"/>
+        <MSC:DatasDisplayPage x:Name="DatasDisplayPageIns" Visibility="Collapsed" LightLineBrush="{DynamicResource RightThumbBrush}" PowerFactorLineBrush="{DynamicResource LeftThumbBrush}" VoltageLineBrush="#FF00C19E" Something2LineBrush="#FF865FC5" Something1LineBrush="Black"/>
         
         
     </Grid>

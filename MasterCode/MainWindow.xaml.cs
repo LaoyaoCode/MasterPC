@@ -66,6 +66,9 @@ namespace MasterCode
 
             //提示程序初始化完成
             ConsolePage.UnityIns.AddMessage(AConsoleMessage.MessageKindEnum.Normal, "程序初始化完成");
+
+
+            MainPageIns.WhenInitFinished();
         }
 
         //控制台页面增加了一条信息
@@ -81,6 +84,8 @@ namespace MasterCode
         //关闭程序按钮
         private void CloseButton_Click()
         {
+            //保存所需数据
+            MainPageIns.CLose();
             Application.Current.Shutdown();
         }
 
